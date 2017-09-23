@@ -12,12 +12,4 @@
 # prevents this file from being published
 publish.ignore
 *.wpp.targets
-*.ts
-.gitignore
-.cs
-App_Start/
-Controllers/
-obj/
-Properties/
-Base.csproj
-Base.csproj.user
+

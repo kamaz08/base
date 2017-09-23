@@ -27,8 +27,8 @@
             '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
             '@angular/platform-browser/animations': 'npm:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
             '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
-
             // other libraries
+            'hammerjs': 'npm:hammerjs/hammer.js',
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
             'ng2-bs3-modal': 'npm:/ng2-bs3-modal'

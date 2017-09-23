@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
+using Base.App_Start;
+using System.Web.Optimization;
 
 namespace Base
 {
@@ -17,7 +19,8 @@ namespace Base
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RefisterBundles(BundleTable.Bundles);
         }
     }
 }

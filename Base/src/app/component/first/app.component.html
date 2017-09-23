@@ -1,8 +1,17 @@
-﻿<md-grid-list cols="4" rowHeight="100px">
-    <md-grid-tile *ngFor="let tile of tiles"
-                  [colspan]="tile.cols"
-                  [rowspan]="tile.rows"
-                  [style.background]="tile.color">
-        {{tile.text}}
-    </md-grid-tile>
-</md-grid-list>
+﻿
+<md-sidenav-container class="example-container">
+    <md-sidenav   #sidenav mode="side" opened="true" class="example-sidenav">
+        Jolly good!
+    </md-sidenav>
+    <md-toolbar color="primary">
+        <span>Custom Toolbar</span>
+    </md-toolbar>
+    <div class="example-sidenav-content">
+        <button type="button" md-button (click)="sidenav.open()">
+            Open sidenav
+        </button>
+        <md-icon>home</md-icon>
+        aasdfasdfASD<br /> aasdfasdfASD<br /> adasdsadasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br />
+    </div>
+
+</md-sidenav-container>
