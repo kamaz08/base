@@ -10,9 +10,9 @@ export class AppComponent {
     showMenu: boolean;
 
     ngOnInit() {
-        this.showMenu = !(this.showButton = window.innerWidth < 700);
+        this.showMenu = !(this.showButton = window.innerWidth < 1000);
         window.onresize = (e) => {
-            let temp = window.innerWidth < 700;
+            let temp = window.innerWidth < 1000;
             if (this.showButton == temp) return;
             this.showButton = temp;
             this.showMenu = !temp;

@@ -1,9 +1,10 @@
 ﻿<nav>
     <md-list *ngFor="let item of menu">
         <h3 md-subheader>{{item.name}}</h3>
-        <md-list-item *ngFor="let item1 of item.list" routerLink="{{item1.router}}">
+        <md-list-item *ngFor="let item1 of item.list" routerLink="{{item1.router}}" routerLinkActive="active">
             <md-icon md-list-icon>{{item1.icon}}</md-icon>
             <h4 md-line>{{item1.name}}</h4>
         </md-list-item>
     </md-list>
 </nav>
+

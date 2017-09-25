@@ -14,10 +14,12 @@ import { UserComponent } from './component/userpanel/userpanel.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { UserProfileComponent } from './component/content/user/profile/user.profile.component';
 import { UserSearchComponent } from './component/content/user/search/user.search.component';
+import { TestAddComponent } from './component/content/test/add/test.add.component';
+
 
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, HttpModule, Routing, Ng2Bs3ModalModule, BrowserAnimationsModule, FormsModule, MaterialModule, MdNativeDateModule],
-    declarations: [AppComponent, UserComponent, MenuComponent, UserProfileComponent, UserSearchComponent],
+    declarations: [AppComponent, UserComponent, MenuComponent, UserProfileComponent, UserSearchComponent, TestAddComponent],
     providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     bootstrap: [AppComponent]
 })
