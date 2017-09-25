@@ -11,8 +11,7 @@ namespace Base.App_Start
         public static void RefisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/node_modules/@angular/material/prebuilt-themes/indigo-pink.css")
-                .Include("https://fonts.googleapis.com/icon?family=Material+Icons"));
+                .Include("~/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"));
         }
     }
 }

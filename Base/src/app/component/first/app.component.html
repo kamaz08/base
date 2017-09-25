@@ -1,17 +1,15 @@
-﻿
-<md-sidenav-container class="example-container">
-    <md-sidenav   #sidenav mode="side" opened="true" class="example-sidenav">
-        Jolly good!
+﻿<md-sidenav-container class="example-container">
+    <md-sidenav #sidenav [mode]="showButton ? 'push' : 'side'" [opened]="showMenu" class="example-sidenav">
+        <user-panel></user-panel>
+        <app-menu></app-menu>
     </md-sidenav>
-    <md-toolbar color="primary">
-        <span>Custom Toolbar</span>
-    </md-toolbar>
     <div class="example-sidenav-content">
-        <button type="button" md-button (click)="sidenav.open()">
-            Open sidenav
-        </button>
-        <md-icon>home</md-icon>
-        aasdfasdfASD<br /> aasdfasdfASD<br /> adasdsadasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br /> aasdfasdfASD<br />
+        <md-toolbar color="primary">
+            <button *ngIf="showButton" md-button (click)="sidenav.open()">
+                <md-icon>reorder</md-icon>
+            </button>
+            <span>Praca dorywcza - Kamil Sikorski</span>
+        </md-toolbar>
+        <router-outlet></router-outlet>
     </div>
-
 </md-sidenav-container>

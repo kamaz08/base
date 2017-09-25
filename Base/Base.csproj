@@ -118,9 +118,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Image\Default\User.png" />
+    <Content Include="image\Default\default-user-img.jpg" />
+    <Content Include="image\Default\User.png" />
+    <Content Include="src\app\component\content\user\profile\user.profile.component.html" />
+    <Content Include="src\app\component\content\user\search\user.search.component.html" />
     <Content Include="src\app\component\first\app.component.css" />
     <Content Include="src\app\component\first\app.component.html" />
+    <Content Include="src\app\component\menu\menu.component.css" />
+    <Content Include="src\app\component\menu\menu.component.html" />
+    <Content Include="src\app\component\userpanel\userpanel.component.css" />
+    <Content Include="src\app\component\userpanel\userpanel.component.html" />
     <Content Include="src\systemjs-angular-loader.js" />
     <Content Include="src\tsconfig.json" />
     <Content Include="package.json" />
@@ -161,9 +168,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\component\content\user\profile\user.profile.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\user\search\user.search.component.ts" />
     <TypeScriptCompile Include="src\app\component\first\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app.routing.ts" />
+    <TypeScriptCompile Include="src\app\component\menu\menu.component.ts" />
+    <TypeScriptCompile Include="src\app\component\userpanel\userpanel.component.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +186,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\app\component\content\message\" />
+    <Folder Include="src\app\component\content\user\setting\" />
+    <Folder Include="src\app\component\content\work\profile\" />
+    <Folder Include="src\app\component\content\work\search\" />
+    <Folder Include="src\app\component\content\work\setting\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
