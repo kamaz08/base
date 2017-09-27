@@ -50,6 +50,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -90,14 +96,39 @@
     <Compile Include="Migrations\201709251055085_InitBazydanych.Designer.cs">
       <DependentUpon>201709251055085_InitBazydanych.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709260932174_identityUser.cs" />
+    <Compile Include="Migrations\201709260932174_identityUser.Designer.cs">
+      <DependentUpon>201709260932174_identityUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709261142096_emailRequried.cs" />
+    <Compile Include="Migrations\201709261142096_emailRequried.Designer.cs">
+      <DependentUpon>201709261142096_emailRequried.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709262157123_RefreshToken.cs" />
+    <Compile Include="Migrations\201709262157123_RefreshToken.Designer.cs">
+      <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\AppUser.cs" />
+    <Compile Include="Model\RefreshToken.cs" />
     <Compile Include="Model\Test\Test.cs" />
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AuthRepository.cs" />
+    <Compile Include="ViewModel\AppUser\RegistrationUserVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709251055085_InitBazydanych.resx">
       <DependentUpon>201709251055085_InitBazydanych.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709260932174_identityUser.resx">
+      <DependentUpon>201709260932174_identityUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709261142096_emailRequried.resx">
+      <DependentUpon>201709261142096_emailRequried.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709262157123_RefreshToken.resx">
+      <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

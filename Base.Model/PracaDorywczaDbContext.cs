@@ -6,8 +6,9 @@ namespace Base.Model.Model
     using System.Linq;
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Base.Model.Model.Test;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public partial class PracaDorywczaDbContext : DbContext
+    public partial class PracaDorywczaDbContext : IdentityDbContext
     {
         public PracaDorywczaDbContext()
             : base("name=PracaDorywczaDbContext")
@@ -17,6 +18,8 @@ namespace Base.Model.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -27,6 +30,8 @@ namespace Base.Model.Model
 
         }
 
+        public DbSet<AppUser> AppUser { get; set; }
         public DbSet<TestDb> Test { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace Base.Controllers
         private PracaDorywczaDbContext db = new PracaDorywczaDbContext();
 
         // GET: api/TestDb
+        [Authorize]
         public IQueryable<TestDb> GetTest()
         {
             return db.Test;
