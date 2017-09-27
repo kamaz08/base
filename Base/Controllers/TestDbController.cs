@@ -21,7 +21,14 @@ namespace Base.Controllers
         [Authorize]
         public IQueryable<TestDb> GetTest()
         {
-            return db.Test;
+            var x = new EmailService();
+            x.SendAsync(new Microsoft.AspNet.Identity.IdentityMessage
+            {
+                Body = "siema elo5",
+                Destination = "kamaz08@gmail.com",
+                Subject = "No witaj kotku :2222D"
+            });
+            return db.Test.Take(10);
         }
 
         // GET: api/TestDb/5
