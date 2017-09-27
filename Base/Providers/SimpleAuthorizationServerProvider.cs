@@ -30,6 +30,9 @@ namespace Base.Providers
                 {
                     context.SetError("invalid_grant", "Nazwa użytkownika lub hasło jest nie prawidłowe.");
                     return;
+                }else if(!user.EmailConfirmed){
+                    context.SetError("invalid_grant", "Potwierdź swój email");
+                    return;
                 }
             }
 

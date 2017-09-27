@@ -1,7 +1,9 @@
-﻿using Base.Model.Model;
+﻿using Base.App_Start;
+using Base.Model.Model;
 using Base.Model.Repository;
 using Base.Model.ViewModel.AppUser;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +16,42 @@ namespace Base.Controllers.Account
 {
     public class AccountController : ApiController
     {
-        private AuthRepository _repository = null;
+        //private AuthRepository _repository = null;
+
+        private AppUserManager _AppUserManager = null;
+
+        protected AppUserManager AppUserManager
+        {
+            get
+            {
+                return _AppUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
 
         public AccountController()
         {
-            _repository = new AuthRepository();
+        }
+
+        [HttpGet]
+        [Route("ConfirmEmail", Name = "ConfirmEmailRoute")]
+        public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "")
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            {
+                ModelState.AddModelError("", "User Id and Code are required");
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            else
+            {
+                return GetErrorResult(result);
+            }
         }
 
         [AllowAnonymous]
@@ -30,21 +63,43 @@ namespace Base.Controllers.Account
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            IdentityResult result = await _repository.RegisterAppUser(model);
+            AppUser user = new AppUser
+            {
+                UserName = model.UserName,
+                Email = model.Email
+            };
+
+            var result = await AppUserManager.CreateAsync(user, model.Password);
             IHttpActionResult errorResult = GetErrorResult(result);
 
-            if(errorResult != null)
-                return errorResult;
+            var userDb = await AppUserManager.FindByNameAsync(model.UserName);
+
+            await SendVerivicationCode(userDb.Id);
 
             return Ok();
         }
 
-        protected override void Dispose(bool disposing)
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> ResendVerificationEmail(string username)
         {
-            if (disposing)
-                _repository.Dispose();
+            var result = await AppUserManager.FindByNameAsync(username);
 
-            base.Dispose(disposing);
+            if(result == null)
+                return BadRequest("Nie ma takiego użytkownika");
+
+            await SendVerivicationCode(result.Id);
+
+            return Ok();
+        }
+
+        private async Task SendVerivicationCode(string userid)
+        {
+            string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(userid);
+
+            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = userid, code = code }));
+
+            await this.AppUserManager.SendEmailAsync(userid, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

@@ -1,4 +1,5 @@
-﻿using Base.Providers;
+﻿using Base.Model.Model;
+using Base.Providers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -16,6 +17,8 @@ namespace Base.App_Start
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            ConfigureOAuthTokenGeneration(app);
 
             ConfigureOAuth(app);
 
@@ -39,6 +42,12 @@ namespace Base.App_Start
             // Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+        }
+
+        private void ConfigureOAuthTokenGeneration(IAppBuilder app)
+        {
+            app.CreatePerOwinContext(PracaDorywczaDbContext.Create);
+            app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
         }
     }
 }

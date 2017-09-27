@@ -25,13 +25,17 @@ namespace Base.Model.Model
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             //aby w³¹czyæ kaskade to modelNuilder.Entity<Test>().HasRequried(x=>x.Test).WithMany(x=>x.InnaTabela).HasForeignKJe(x=>x.testId).WillCascadeDeletetrue
-
-
-
         }
+
+
 
         public DbSet<AppUser> AppUser { get; set; }
         public DbSet<TestDb> Test { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
+
+        public static PracaDorywczaDbContext Create()
+        {
+            return new PracaDorywczaDbContext();
+        }
     }
 }
