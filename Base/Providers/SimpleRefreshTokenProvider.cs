@@ -28,8 +28,8 @@ namespace Base.Providers
                 };
 
 
-                context.Ticket.Properties.IssuedUtc = DateTimeOffset.Now;
-                context.Ticket.Properties.ExpiresUtc = DateTimeOffset.Now.AddMinutes(10);
+                context.Ticket.Properties.IssuedUtc = token.IssuedUtc;
+                context.Ticket.Properties.ExpiresUtc = token.ExpiresUtc;
 
                 token.ProtectedTicket = context.SerializeTicket();
 
@@ -38,10 +38,7 @@ namespace Base.Providers
                 var result = await db.SaveChangesAsync() > 0;
 
                 if (result)
-                {
                     context.SetToken(refreshTokenId);
-                }
-
             }
         }
 

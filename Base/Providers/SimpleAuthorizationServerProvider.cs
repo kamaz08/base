@@ -1,5 +1,6 @@
-﻿using Base.Model.Model;
-using Base.Model.Repository;
+﻿using Base.App_Start;
+using Base.Model.Model;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
@@ -15,23 +16,32 @@ namespace Base.Providers
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            string uid = context.Parameters.Where(f => f.Key == "otpkey").Select(f => f.Value).SingleOrDefault()[0];
+            context.OwinContext.Set<string>("otpkey", uid);
+            await base.ValidateClientAuthentication(context);
             context.Validated();
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
-            using (AuthRepository _repo = new AuthRepository())
+            using (AppUserManager userManager = context.OwinContext.GetUserManager<AppUserManager>())
             {
-                AppUser user = await _repo.FindUser(context.UserName, context.Password);
-
+                AppUser user = await userManager.FindAsync(context.UserName, context.Password);
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "Nazwa użytkownika lub hasło jest nie prawidłowe.");
                     return;
-                }else if(!user.EmailConfirmed){
+                }
+                if (!user.EmailConfirmed)
+                {
                     context.SetError("invalid_grant", "Potwierdź swój email");
+                    return;
+                }
+                string otp = context.OwinContext.Get<string>("otpkey");
+                bool otpcheck = await userManager.VerifyTwoFactorTokenAsync(user.Id, "Email Code", otp);
+                if (!otpcheck)
+                {
+                    context.SetError("invalid_grant", "Hasło jednorazowe jest nie poprawne");
                     return;
                 }
             }

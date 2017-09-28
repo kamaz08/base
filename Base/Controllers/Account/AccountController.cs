@@ -1,6 +1,5 @@
 ﻿using Base.App_Start;
 using Base.Model.Model;
-using Base.Model.Repository;
 using Base.Model.ViewModel.AppUser;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,51 +13,41 @@ using System.Web.Http;
 
 namespace Base.Controllers.Account
 {
+    [Authorize]
     public class AccountController : ApiController
     {
-        //private AuthRepository _repository = null;
-
         private AppUserManager _AppUserManager = null;
+        protected AppUserManager AppUserManager => _AppUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
 
-        protected AppUserManager AppUserManager
-        {
-            get
-            {
-                return _AppUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
-            }
-        }
-
-        public AccountController()
-        {
-        }
+        public AccountController() { }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("ConfirmEmail", Name = "ConfirmEmailRoute")]
-        public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "")
+        public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
             {
-                ModelState.AddModelError("", "User Id and Code are required");
+                ModelState.AddModelError("", "Nie poprawny link");
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
-
+            IdentityResult result = await AppUserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
-            {
                 return Ok();
-            }
             else
-            {
                 return GetErrorResult(result);
-            }
         }
 
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<IHttpActionResult> Register (RegistrationUserVM model)
+        public async Task<IHttpActionResult> Register(RegistrationUserVM model)
         {
             if (model == null)
-                return BadRequest("Wypełnij pola");
+            {
+                ModelState.AddModelError("", "Wypełnij pola");
+                return BadRequest(ModelState);
+            }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -66,14 +55,16 @@ namespace Base.Controllers.Account
             AppUser user = new AppUser
             {
                 UserName = model.UserName,
-                Email = model.Email
+                Email = model.Email,
+                TwoFactorEnabled = true
             };
 
             var result = await AppUserManager.CreateAsync(user, model.Password);
-            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
 
             var userDb = await AppUserManager.FindByNameAsync(model.UserName);
-
             await SendVerivicationCode(userDb.Id);
 
             return Ok();
@@ -85,7 +76,7 @@ namespace Base.Controllers.Account
         {
             var result = await AppUserManager.FindByNameAsync(username);
 
-            if(result == null)
+            if (result == null)
                 return BadRequest("Nie ma takiego użytkownika");
 
             await SendVerivicationCode(result.Id);
@@ -93,23 +84,50 @@ namespace Base.Controllers.Account
             return Ok();
         }
 
-        private async Task SendVerivicationCode(string userid)
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> LoginOtpCode(string username)
         {
-            string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(userid);
+            var user = await AppUserManager.FindByNameAsync(username);
 
-            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = userid, code = code }));
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Nie ma takiego użytkownika");
+                return BadRequest(ModelState);
+            }
 
-            await this.AppUserManager.SendEmailAsync(userid, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            await SendTwoFactorAuthoriazation(user.Id);
+
+            return Ok();
         }
 
+        #region SendEmail
+        private async Task SendVerivicationCode(string userid)
+        {
+            string code = await AppUserManager.GenerateEmailConfirmationTokenAsync(userid);
+            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = userid, code = code }));
+            await AppUserManager.SendEmailAsync(userid, "Potwierdź swoje konto", "Proszę potwierdź swój adres email klikając w <a href=\"" + callbackUrl + "\">Ten link</a>");
+        }
+
+
+        public async Task SendTwoFactorAuthoriazation(string userid)
+        {
+            string code = await AppUserManager.GenerateTwoFactorTokenAsync(userid, "Email Code");
+
+            await AppUserManager.SendEmailAsync(userid, "Twoje jednorazowe hasło ", $"Twoje jednorazowe hasło to {code}");
+        }
+
+        #endregion
+
+        #region helper
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
-            if(result == null)
+            if (result == null)
                 return InternalServerError();
 
             if (!result.Succeeded)
             {
-                if(result.Errors != null)
+                if (result.Errors != null)
                     foreach (string error in result.Errors)
                         ModelState.AddModelError("", error);
 
@@ -121,5 +139,7 @@ namespace Base.Controllers.Account
 
             return null;
         }
+
+        #endregion
     }
 }

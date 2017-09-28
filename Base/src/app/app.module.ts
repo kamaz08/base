@@ -9,7 +9,7 @@ import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { Routing } from './app.routing';
 
-import { AppComponent } from './component/first/app.component';
+import { AppComponent } from './component/my-app/app.component';
 import { UserComponent } from './component/userpanel/userpanel.component';
 import { MenuComponent } from './component/menu/menu.component';
 import { UserProfileComponent } from './component/content/user/profile/user.profile.component';
