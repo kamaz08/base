@@ -84,11 +84,37 @@ namespace Base.Controllers.Account
             return Ok();
         }
 
+        public class nodobra
+        {
+            public string grant_type { get; set; }
+            public string username { get; set; }
+            public string password { get; set; }
+            public string otpkey { get; set; }
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IHttpActionResult> TestProsze(nodobra fuck)
+        {
+            var user = await AppUserManager.FindByNameAsync("asd");
+
+
+            return Ok("kurde");
+        }
+
+
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IHttpActionResult> LoginOtpCode(string username)
+        public async Task<IHttpActionResult> LoginOtpCode(string login)
         {
-            var user = await AppUserManager.FindByNameAsync(username);
+            if (string.IsNullOrEmpty(login))
+            {
+                ModelState.AddModelError("", "Nie ma takiego użytkownika");
+                return BadRequest(ModelState);
+            }
+
+            var user = await AppUserManager.FindByNameAsync(login);
 
             if (user == null)
             {

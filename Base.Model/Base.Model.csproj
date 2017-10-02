@@ -114,6 +114,7 @@
     <Compile Include="Model\Test\Test.cs" />
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AppUser\LoginVM.cs" />
     <Compile Include="ViewModel\AppUser\RegistrationUserVM.cs" />
   </ItemGroup>
   <ItemGroup>

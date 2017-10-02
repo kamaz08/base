@@ -1,0 +1,46 @@
+﻿
+<md-card class="card-login">
+    <md-tab-group>
+        <md-tab label="Zaloguj">
+            <h2>Podaj swój login</h2>
+            <md-form-field>
+                <input mdInput placeholder="Login" [(ngModel)]="zLogin">
+            </md-form-field>
+            <div>
+                <button md-raised-button color="primary" (click)="SendOTP()">Wyślij kod</button>
+            </div>
+            <h2>Wprowadź hasła</h2>
+            <md-form-field>
+                <input type="password" mdInput placeholder="Hasło" [(ngModel)]="zPassword">
+            </md-form-field>
+            <md-form-field>
+                <input type="text" mdInput placeholder="hasło z maila" [(ngModel)]="zOtp">
+            </md-form-field>
+            <div>
+                <button md-raised-button color="primary" (click)="Zaloguj()">Zaloguj</button>
+            </div>
+
+        </md-tab>
+        <md-tab label="Rejestruj">
+            <h2>Podaj swoje dane</h2>
+            <md-form-field>
+                <input mdInput placeholder="Login" [(ngModel)]="rLogin">
+            </md-form-field>
+            <br />
+            <md-form-field>
+                <input type="password" mdInput placeholder="Hasło" [(ngModel)]="rPassword">
+            </md-form-field>
+            <br />
+            <md-form-field>
+                <input type="password" mdInput placeholder="Potwierdź hasło" [(ngModel)]="rPassword2">
+            </md-form-field>
+            <br />
+            <md-form-field>
+                <input type="email" mdInput placeholder="Email" [(ngModel)]="rEmail">
+            </md-form-field>
+            <div>
+                <button md-raised-button color="primary" (click)="Rejestruj()">Zaloguj</button>
+            </div>
+        </md-tab>
+    </md-tab-group>
+</md-card>

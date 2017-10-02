@@ -165,8 +165,10 @@
     <Content Include="src\app\component\content\test\add\test.add.component.html" />
     <Content Include="src\app\component\content\user\profile\user.profile.component.html" />
     <Content Include="src\app\component\content\user\search\user.search.component.html" />
-    <Content Include="src\app\component\first\app.component.css" />
-    <Content Include="src\app\component\first\app.component.html" />
+    <Content Include="src\app\component\start\start.component.css" />
+    <Content Include="src\app\component\start\start.component.html" />
+    <Content Include="src\app\component\login\login.component.css" />
+    <Content Include="src\app\component\login\login.component.html" />
     <Content Include="src\app\component\menu\menu.component.css" />
     <Content Include="src\app\component\menu\menu.component.html" />
     <Content Include="src\app\component\userpanel\userpanel.component.css" />
@@ -217,15 +219,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\test\add\test.add.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\user\profile\user.profile.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\user\search\user.search.component.ts" />
-    <TypeScriptCompile Include="src\app\component\first\app.component.ts" />
+    <TypeScriptCompile Include="src\app\component\start\start.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app.routing.ts" />
+    <TypeScriptCompile Include="src\app\component\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\component\menu\menu.component.ts" />
     <TypeScriptCompile Include="src\app\component\userpanel\userpanel.component.ts" />
-    <TypeScriptCompile Include="src\app\model\IRegistrationUser.ts" />
+    <TypeScriptCompile Include="src\app\helper\error-handler.ts" />
+    <TypeScriptCompile Include="src\app\model\authorization.models.ts" />
+    <TypeScriptCompile Include="src\app\service\authorize.service.ts" />
+    <TypeScriptCompile Include="src\app\service\base.service.ts" />
+    <TypeScriptCompile Include="src\app\service\login.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -244,7 +252,6 @@
     <Folder Include="src\app\component\content\work\profile\" />
     <Folder Include="src\app\component\content\work\search\" />
     <Folder Include="src\app\component\content\work\setting\" />
-    <Folder Include="src\app\service\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base.Model\Base.Model.csproj">

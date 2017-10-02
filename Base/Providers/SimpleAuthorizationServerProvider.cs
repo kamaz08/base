@@ -16,8 +16,11 @@ namespace Base.Providers
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            string uid = context.Parameters.Where(f => f.Key == "otpkey").Select(f => f.Value).SingleOrDefault()[0];
-            context.OwinContext.Set<string>("otpkey", uid);
+            var uid = context.Parameters.Where(f => f.Key == "otpkey").Select(f => f.Value).SingleOrDefault();
+            if(uid != null)
+            {
+                context.OwinContext.Set<string>("otpkey", uid[0]);
+            }
             await base.ValidateClientAuthentication(context);
             context.Validated();
         }
@@ -32,11 +35,11 @@ namespace Base.Providers
                     context.SetError("invalid_grant", "Nazwa użytkownika lub hasło jest nie prawidłowe.");
                     return;
                 }
-                if (!user.EmailConfirmed)
-                {
-                    context.SetError("invalid_grant", "Potwierdź swój email");
-                    return;
-                }
+                //if (!user.EmailConfirmed)
+                //{
+                //    context.SetError("invalid_grant", "Potwierdź swój email");
+                //    return;
+                //}
                 string otp = context.OwinContext.Get<string>("otpkey");
                 bool otpcheck = await userManager.VerifyTwoFactorTokenAsync(user.Id, "Email Code", otp);
                 if (!otpcheck)
