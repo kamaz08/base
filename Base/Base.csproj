@@ -223,6 +223,7 @@
     <TypeScriptCompile Include="src\app\component\content\test\add\test.add.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\user\profile\user.profile.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\user\search\user.search.component.ts" />
+    <TypeScriptCompile Include="src\app\component\dialog\error.dialog.component.ts" />
     <TypeScriptCompile Include="src\app\component\start\start.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\app.routing.ts" />
@@ -233,6 +234,7 @@
     <TypeScriptCompile Include="src\app\model\authorization.models.ts" />
     <TypeScriptCompile Include="src\app\service\authorize.service.ts" />
     <TypeScriptCompile Include="src\app\service\base.service.ts" />
+    <TypeScriptCompile Include="src\app\service\error.service.ts" />
     <TypeScriptCompile Include="src\app\service\login.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>

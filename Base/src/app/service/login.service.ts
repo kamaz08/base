@@ -30,12 +30,11 @@ export class LoginService {
     Register(data: IRegistrationUser) {
         return this._http.post(
             '/api/Account/Register',
-            data,
-            { headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') }
+            JSON.stringify(data),
+            { headers: new HttpHeaders().set('Content-Type', 'application/json') }
         );
     };
 
-   
 
 
     //get(url: string): Observable<any> {

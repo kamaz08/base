@@ -1,12 +1,10 @@
 ﻿import { ErrorHandler, Injectable } from '@angular/core';
-import { LoginService } from './../service/login.service'
+import { ErrorService } from './../service/error.service';
+
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-    constructor(private _loginService : LoginService) { }
+    constructor(private _errorService: ErrorService) { }
     handleError(error: any) {
-        console.log('Hio')
-        debugger;
-        throw error;
+        this._errorService.SetError(error);
     }
-
 }

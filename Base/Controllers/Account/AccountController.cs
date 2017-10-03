@@ -43,14 +43,8 @@ namespace Base.Controllers.Account
         [AllowAnonymous]
         public async Task<IHttpActionResult> Register(RegistrationUserVM model)
         {
-            if (model == null)
-            {
-                ModelState.AddModelError("", "Wypełnij pola");
-                return BadRequest(ModelState);
-            }
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (model == null || !ModelState.IsValid)
+                return BadRequest("Wypełnij pola");
 
             AppUser user = new AppUser
             {
@@ -62,7 +56,7 @@ namespace Base.Controllers.Account
             var result = await AppUserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
-                return GetErrorResult(result);
+                return BadRequest("Uzytkownik jest zajęty");
 
             var userDb = await AppUserManager.FindByNameAsync(model.UserName);
             await SendVerivicationCode(userDb.Id);
