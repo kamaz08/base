@@ -14,7 +14,7 @@ using System.Web.Http;
 namespace Base.Controllers.Account
 {
     [Authorize]
-    public class AccountController : ApiController
+    public class AccountController : BaseController
     {
         private AppUserManager _AppUserManager = null;
         protected AppUserManager AppUserManager => _AppUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
@@ -27,10 +27,8 @@ namespace Base.Controllers.Account
         public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
-            {
-                ModelState.AddModelError("", "Nie poprawny link");
-                return BadRequest(ModelState);
-            }
+                return BadRequest("Nieporawny link");
+            
 
             IdentityResult result = await AppUserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
@@ -44,7 +42,7 @@ namespace Base.Controllers.Account
         public async Task<IHttpActionResult> Register(RegistrationUserVM model)
         {
             if (model == null || !ModelState.IsValid)
-                return BadRequest("Wypełnij pola");
+                return GetErrorResultModel();
 
             AppUser user = new AppUser
             {
@@ -78,43 +76,17 @@ namespace Base.Controllers.Account
             return Ok();
         }
 
-        public class nodobra
-        {
-            public string grant_type { get; set; }
-            public string username { get; set; }
-            public string password { get; set; }
-            public string otpkey { get; set; }
-        }
-
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IHttpActionResult> TestProsze(nodobra fuck)
-        {
-            var user = await AppUserManager.FindByNameAsync("asd");
-
-
-            return Ok("kurde");
-        }
-
-
         [HttpGet]
         [AllowAnonymous]
         public async Task<IHttpActionResult> LoginOtpCode(string login)
         {
             if (string.IsNullOrEmpty(login))
-            {
-                ModelState.AddModelError("", "Nie ma takiego użytkownika");
-                return BadRequest(ModelState);
-            }
+                return BadRequest("Podaj dane");
 
             var user = await AppUserManager.FindByNameAsync(login);
 
             if (user == null)
-            {
-                ModelState.AddModelError("", "Nie ma takiego użytkownika");
-                return BadRequest(ModelState);
-            }
+                return BadRequest("Nie ma takiego użytkownika");
 
             await SendTwoFactorAuthoriazation(user.Id);
 
@@ -135,29 +107,6 @@ namespace Base.Controllers.Account
             string code = await AppUserManager.GenerateTwoFactorTokenAsync(userid, "Email Code");
 
             await AppUserManager.SendEmailAsync(userid, "Twoje jednorazowe hasło ", $"Twoje jednorazowe hasło to {code}");
-        }
-
-        #endregion
-
-        #region helper
-        private IHttpActionResult GetErrorResult(IdentityResult result)
-        {
-            if (result == null)
-                return InternalServerError();
-
-            if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                    foreach (string error in result.Errors)
-                        ModelState.AddModelError("", error);
-
-                if (ModelState.IsValid)
-                    return BadRequest();
-
-                return BadRequest(ModelState);
-            }
-
-            return null;
         }
 
         #endregion
