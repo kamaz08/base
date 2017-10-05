@@ -12,7 +12,9 @@ namespace Base.Model.Model
     {
         [Required]
         public override string Email { get => base.Email; set => base.Email = value; }
-
-        public Address Address { get; set; } 
+        public int PersonalDataId { get; set; }
+        public virtual PersonalData PersonalData { get; set; } 
+        public int PersonalProfileId { get; set; }
+        public PersonalProfile PersonalProfile { get; set; }
     }
 }

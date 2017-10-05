@@ -26,10 +26,24 @@ namespace Base.Model.Model
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<Address>()
-                .HasRequired(x => x.AppUser)
+                .HasRequired(x => x.PersonalData)
                 .WithOptional(x => x.Address)
                 .WillCascadeOnDelete(true);
-            //aby w³¹czyæ kaskade to modelNuilder.Entity<Test>().HasRequried(x=>x.Test).WithMany(x=>x.InnaTabela).HasForeignKJe(x=>x.testId).WillCascadeDeletetrue
+
+            modelBuilder.Entity<Address>()
+                .HasRequired(x => x.PersonalData)
+                .WithOptional(x => x.RegisteredAddress)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<PersonalData>()
+                .HasRequired(x => x.AppUser)
+                .WithOptional(x => x.PersonalData)
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<PersonalProfile>()
+                .HasRequired(x => x.AppUser)
+                .WithOptional(x => x.PersonalProfile)
+                .WillCascadeOnDelete(true);
         }
 
 
@@ -38,7 +52,8 @@ namespace Base.Model.Model
         public DbSet<TestDb> Test { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
         public DbSet<Address> Address { get; set; }
-        public DbSet<PersonalData> PersonalData {get;set;}
+        public DbSet<PersonalData> PersonalData { get; set; }
+        public DbSet<PersonalProfile> PersonalProfile { get; set; }
 
         public static PracaDorywczaDbContext Create()
         {

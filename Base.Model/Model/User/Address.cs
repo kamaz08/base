@@ -35,8 +35,8 @@ namespace Base.Model.Model.User
         [Required]
         [Display(Name = "Data modyfikacji")]
         public DateTime DateModifield { get; set; }
-        public String AppUserId { get; set; }
-        public virtual AppUser AppUser {get;set;}
+        public String PersonalDataId { get; set; }
+        public virtual PersonalData PersonalData { get; set; }
     }
 
 }
