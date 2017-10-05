@@ -18,8 +18,6 @@ namespace Base.Model.Model.User
         public bool ShowEmail { get; set; }
         public String Education { get; set; }
         public String Description { get; set; }
-        public String AppUserId { get; set; }
         public virtual AppUser AppUser { get; set; }
-
     }
 }

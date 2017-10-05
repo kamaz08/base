@@ -109,11 +109,19 @@
     <Compile Include="Migrations\201709262157123_RefreshToken.Designer.cs">
       <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710051651561_Users.cs" />
+    <Compile Include="Migrations\201710051651561_Users.Designer.cs">
+      <DependentUpon>201710051651561_Users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\AppUser.cs" />
-    <Compile Include="Model\RefreshToken.cs" />
+    <Compile Include="Model\Location\City.cs" />
+    <Compile Include="Model\Location\State.cs" />
+    <Compile Include="Model\User\AppUser.cs" />
+    <Compile Include="Model\Order\Order.cs" />
+    <Compile Include="Model\Order\OrderDetail.cs" />
+    <Compile Include="Model\User\RefreshToken.cs" />
     <Compile Include="Model\Test\Test.cs" />
-    <Compile Include="Model\User\Address.cs" />
+    <Compile Include="Model\Location\Address.cs" />
     <Compile Include="Model\User\PersonalData.cs" />
     <Compile Include="Model\User\PersonalProfile.cs" />
     <Compile Include="PracaDorywczaDbContext.cs" />
@@ -134,8 +142,12 @@
     <EmbeddedResource Include="Migrations\201709262157123_RefreshToken.resx">
       <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051651561_Users.resx">
+      <DependentUpon>201710051651561_Users.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Mapping\" />
     <Folder Include="Repository\" />
   </ItemGroup>
   <PropertyGroup>

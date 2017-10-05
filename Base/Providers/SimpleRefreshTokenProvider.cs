@@ -1,4 +1,5 @@
 ﻿using Base.Model.Model;
+using Base.Model.Model.User;
 using Microsoft.Owin.Security.Infrastructure;
 using System;
 using System.Collections.Generic;

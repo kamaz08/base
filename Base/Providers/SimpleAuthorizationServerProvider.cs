@@ -1,5 +1,6 @@
 ﻿using Base.App_Start;
 using Base.Model.Model;
+using Base.Model.Model.User;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;

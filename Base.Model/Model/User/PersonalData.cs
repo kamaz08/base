@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Base.Model.Model.Location;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+
 
 namespace Base.Model.Model.User
 {
@@ -25,11 +27,13 @@ namespace Base.Model.Model.User
         [Display(Name = "Numer telefonu")]
         [MaxLength(15)]
         public String PhoneNumber { get; set; }
-        public String AppUserId { get; set; }
+        [Required]
+        [Display(Name = "Data dodania")]
+        public DateTime DateCreated { get; set; }
+        [Required]
+        [Display(Name = "Data modyfikacji")]
+        public DateTime DateModifield { get; set; }
         public virtual AppUser AppUser { get; set; }
-        public int AddressId { get; set; }
         public virtual Address Address { get; set; }
-        public int RegisteredAddressId { get; set; }
-        public virtual Address RegisteredAddress { get; set; }
     }
 }

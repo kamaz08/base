@@ -1,5 +1,5 @@
 ﻿using Base.App_Start;
-using Base.Model.Model;
+using Base.Model.Model.User;
 using Base.Model.ViewModel.AppUser;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
