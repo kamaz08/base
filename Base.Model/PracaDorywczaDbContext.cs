@@ -55,6 +55,7 @@ namespace Base.Model.Model
         public DbSet<PersonalData> PersonalData { get; set; }
         public DbSet<PersonalProfile> PersonalProfile { get; set; }
 
+
         public static PracaDorywczaDbContext Create()
         {
             return new PracaDorywczaDbContext();
