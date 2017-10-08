@@ -5,47 +5,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Base.Model.Model.MessageModel;
 
 namespace Base.Model.Model.OrderModel
 {
     public class Order
     {
-        [Key]
         public int Id { get; set; }
-
-        [Display(Name ="Nazwa zlecenia")]
-        [Required]
-        [MaxLength(128)]
         public String Name { get; set; }
-
-        [Display(Name = "Stawka")]
-        [Required]
-        [MaxLength(64)]
         public String Rate { get; set; }
-
-        [Display(Name = "Ilość osób")]
         public int NumberOfEmploye { get; set; }
 
-        [Display(Name = "Adres zlecenia")]
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
 
-        [Display(Name = "Data utworzenia")]
         public DateTime CreatedDate { get; set; }
-
-        [Display(Name = "Data wyników")]
         public DateTime ResultDate { get; set; }
-
-        [Display(Name = "Data pracy")]
         public DateTime WorkDate { get; set; }
 
-        public String AppUserId { get; set; }
-        [Display(Name ="Pracodawca")]
+        public String EmployerId { get; set; }
         public virtual AppUser Employer { get; set; }
 
         public virtual OrderDetail OrderDetail { get; set; }
 
         public virtual ICollection<AppUserOrderCandidate> Candidate { get; set; }
         public virtual ICollection<AppUserOrderCustomer> Customer { get; set; }
+        public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
 
     }
 }

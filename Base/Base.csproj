@@ -195,7 +195,6 @@
     <Compile Include="Controllers\Account\AccountController.cs" />
     <Compile Include="Controllers\Account\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestDbController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

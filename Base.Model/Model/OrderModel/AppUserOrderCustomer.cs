@@ -7,12 +7,11 @@ using System.Web;
 
 namespace Base.Model.Model.OrderModel
 {
-    public class AppUserOrderCandidate
+    public class AppUserOrderCustomer
     {
-        [Key]
-        public String Id { get; set; }
+        public int Id { get; set; }
         public String AppUserId { get; set; }
-        public String OrderId { get; set; }
+        public int OrderId { get; set; }
 
         public virtual Order Order { get; private set; }
         public virtual AppUser AppUser { get; private set; }

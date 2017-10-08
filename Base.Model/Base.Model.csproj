@@ -93,6 +93,22 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\LocationConfiguration\AddressTypeConfiguartion.cs" />
+    <Compile Include="Configuration\LocationConfiguration\CityTypeConfiguartion.cs" />
+    <Compile Include="Configuration\LocationConfiguration\StateTypeConfiguration.cs" />
+    <Compile Include="Configuration\MessageConfiguration\AppUserPublicMessageTypeConfiguration.cs" />
+    <Compile Include="Configuration\MessageConfiguration\MessageTypeConfiguration.cs" />
+    <Compile Include="Configuration\MessageConfiguration\PrivateMessageTypeConfiguration.cs" />
+    <Compile Include="Configuration\MessageConfiguration\PublicMessageTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\AppUserOrderCandidateTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\OrderDetailTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\OrderTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\AppUserOrderCustomerTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\VoteTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\AppUserTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\PersonalDataTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\PersonalProfileTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\RefreshtokenTypeConfiguration.cs" />
     <Compile Include="Migrations\201709251055085_InitBazydanych.cs" />
     <Compile Include="Migrations\201709251055085_InitBazydanych.Designer.cs">
       <DependentUpon>201709251055085_InitBazydanych.cs</DependentUpon>
@@ -113,17 +129,52 @@
     <Compile Include="Migrations\201710051651561_Users.Designer.cs">
       <DependentUpon>201710051651561_Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710051945418_Users2.cs" />
+    <Compile Include="Migrations\201710051945418_Users2.Designer.cs">
+      <DependentUpon>201710051945418_Users2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710081140090_TypeConfigurationTest.cs" />
+    <Compile Include="Migrations\201710081140090_TypeConfigurationTest.Designer.cs">
+      <DependentUpon>201710081140090_TypeConfigurationTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710081156065_TypeConfigurationTest2.cs" />
+    <Compile Include="Migrations\201710081156065_TypeConfigurationTest2.Designer.cs">
+      <DependentUpon>201710081156065_TypeConfigurationTest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710081423074_AddOrder.cs" />
+    <Compile Include="Migrations\201710081423074_AddOrder.Designer.cs">
+      <DependentUpon>201710081423074_AddOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710081625123_UserOrderTest.cs" />
+    <Compile Include="Migrations\201710081625123_UserOrderTest.Designer.cs">
+      <DependentUpon>201710081625123_UserOrderTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710081737400_Voting.cs" />
+    <Compile Include="Migrations\201710081737400_Voting.Designer.cs">
+      <DependentUpon>201710081737400_Voting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710082000459_Message.cs" />
+    <Compile Include="Migrations\201710082000459_Message.Designer.cs">
+      <DependentUpon>201710082000459_Message.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\Location\City.cs" />
-    <Compile Include="Model\Location\State.cs" />
-    <Compile Include="Model\User\AppUser.cs" />
-    <Compile Include="Model\Order\Order.cs" />
-    <Compile Include="Model\Order\OrderDetail.cs" />
-    <Compile Include="Model\User\RefreshToken.cs" />
-    <Compile Include="Model\Test\Test.cs" />
-    <Compile Include="Model\Location\Address.cs" />
-    <Compile Include="Model\User\PersonalData.cs" />
-    <Compile Include="Model\User\PersonalProfile.cs" />
+    <Compile Include="Model\Enum\VoteTypeEnum.cs" />
+    <Compile Include="Model\LocationModel\City.cs" />
+    <Compile Include="Model\LocationModel\State.cs" />
+    <Compile Include="Model\MessageModel\AppUserPublicMessage.cs" />
+    <Compile Include="Model\MessageModel\Message.cs" />
+    <Compile Include="Model\MessageModel\PrivateMessage.cs" />
+    <Compile Include="Model\MessageModel\PublicMessage.cs" />
+    <Compile Include="Model\OrderModel\AppUserOrderCustomer.cs" />
+    <Compile Include="Model\OrderModel\AppUserOrderCandidate.cs" />
+    <Compile Include="Model\OrderModel\Vote.cs" />
+    <Compile Include="Model\UserModel\AppUser.cs" />
+    <Compile Include="Model\OrderModel\Order.cs" />
+    <Compile Include="Model\OrderModel\OrderDetail.cs" />
+    <Compile Include="Model\UserModel\RefreshToken.cs" />
+    <Compile Include="Model\LocationModel\Address.cs" />
+    <Compile Include="Model\UserModel\PersonalData.cs" />
+    <Compile Include="Model\UserModel\PersonalProfile.cs" />
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AppUser\LoginVM.cs" />
@@ -145,9 +196,29 @@
     <EmbeddedResource Include="Migrations\201710051651561_Users.resx">
       <DependentUpon>201710051651561_Users.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051945418_Users2.resx">
+      <DependentUpon>201710051945418_Users2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081140090_TypeConfigurationTest.resx">
+      <DependentUpon>201710081140090_TypeConfigurationTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081156065_TypeConfigurationTest2.resx">
+      <DependentUpon>201710081156065_TypeConfigurationTest2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081423074_AddOrder.resx">
+      <DependentUpon>201710081423074_AddOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081625123_UserOrderTest.resx">
+      <DependentUpon>201710081625123_UserOrderTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710081737400_Voting.resx">
+      <DependentUpon>201710081737400_Voting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710082000459_Message.resx">
+      <DependentUpon>201710082000459_Message.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mapping\" />
     <Folder Include="Repository\" />
   </ItemGroup>
   <PropertyGroup>

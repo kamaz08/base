@@ -10,6 +10,7 @@ namespace Base.Model.Model.User
     {
         [Key]
         public int Id { get; set; }
+        public String AppUserId { get; set; }
         public String PhotoUrl { get; set; }
         public bool ShowFirstName { get; set; }
         public bool ShowLastName { get; set; }
@@ -18,6 +19,8 @@ namespace Base.Model.Model.User
         public bool ShowEmail { get; set; }
         public String Education { get; set; }
         public String Description { get; set; }
+
+
         public virtual AppUser AppUser { get; set; }
     }
 }

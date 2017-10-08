@@ -1,4 +1,5 @@
 ﻿using Base.App_Start;
+using Base.Model.Model;
 using Base.Model.Model.User;
 using Base.Model.ViewModel.AppUser;
 using Microsoft.AspNet.Identity;
@@ -89,6 +90,31 @@ namespace Base.Controllers.Account
                 return BadRequest("Nie ma takiego użytkownika");
 
             await SendTwoFactorAuthoriazation(user.Id);
+
+            return Ok();
+        }
+
+        [HttpGet]
+        public IHttpActionResult Test()
+        {
+            PracaDorywczaDbContext x = new PracaDorywczaDbContext();
+            AppUser us = AppUserManager.FindByName(RequestContext.Principal.Identity.GetUserName());
+            var x1 = x.Order.Add(new Model.Model.OrderModel.Order
+            {
+                CreatedDate = DateTime.Now,
+                ResultDate = DateTime.Now,
+                WorkDate = DateTime.Now,
+                Name = "test",
+                Rate = "chcialbys tyle",
+                EmployerId = us.Id
+            });
+            x.SaveChanges();
+
+            var todele = x.Order.First(r => r.Id ==2);
+            x.Order.Where(y => y.Employer == us);
+
+            x.Order.Remove(todele);
+            x.SaveChanges();
 
             return Ok();
         }
