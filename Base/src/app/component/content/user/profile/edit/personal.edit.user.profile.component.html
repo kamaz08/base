@@ -1,0 +1,46 @@
+﻿<div *ngIf="isLoading">
+    <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <form (ngSubmit)="onSubmit(PersonalData._value)" [formGroup]="PersonalData">
+        <md-form-field class="form-width">
+            <input mdInput formControlName="FirstName" placeholder="Imie">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="LastName" placeholder="Nazwisko">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input type="text" mdInput [mdDatepicker]="picker" formControlName="BirthDate" placeholder="Data urodzin">
+            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+            <md-datepicker #picker></md-datepicker>
+        </md-form-field>
+        <br />
+        <md-form-field class="form-width">
+            <input mdInput formControlName="Pesel" placeholder="Pesel">
+        </md-form-field>
+        <br />
+        <md-form-field class="form-width">
+            <input mdInput formControlName="PhoneNumber" placeholder="Numer telefonu">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="Street" placeholder="Ulica">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="HouseNumber" placeholder="Numer domu">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="FlatNumber" placeholder="Numer mieszkania">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="ZipCode" placeholder="Kod pocztowy">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="City" placeholder="Miasto">
+        </md-form-field>
+        <md-form-field class="form-width">
+            <input mdInput formControlName="State" placeholder="Województwo">
+        </md-form-field>
+        <br />
+        <button type="submit" md-raised-button color="primary">Zapisz</button>
+    </form>
+</div>

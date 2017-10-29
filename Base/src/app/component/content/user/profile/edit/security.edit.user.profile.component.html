@@ -1,0 +1,22 @@
+﻿<form (ngSubmit)="ChangePasswordFunc(ChangePassword._value)" [formGroup]="ChangePassword">
+    <md-form-field class="form-width">
+        <input type="password" mdInput formControlName="OldPassword" placeholder="Stare Hasło">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input type="password" mdInput formControlName="Password" placeholder="Hasło">
+    </md-form-field>
+    <md-form-field class="form-width">
+        <input type="password" mdInput formControlName="ConfirmPassword" placeholder="Potwierdź hasło">
+    </md-form-field>
+    <br />
+    <button type="submit" md-raised-button color="primary">Zmien hasło</button>
+</form>
+<br />
+<form (ngSubmit)="ChangeEmailFunc(ChangeEmail._value)" [formGroup]="ChangeEmail">
+    <md-form-field class="form-width">
+        <input mdInput formControlName="Email" placeholder="Email">
+    </md-form-field>
+    <br />
+    <button type="submit" md-raised-button color="primary">Zmień adres email</button>
+</form>

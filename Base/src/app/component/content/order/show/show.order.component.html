@@ -1,0 +1,34 @@
+﻿<md-card *ngIf="Order" style="margin-bottom:20px">
+    <md-card-header>
+        <md-card-title><h1>{{Order.Name}}</h1></md-card-title>
+        <md-card-subtitle><h2>{{Order.Category}}</h2></md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+        <md-tab-group #tabGroup (selectedIndexChange)="tabChanged($event)">
+            <md-tab label="Informacje">
+                <h2> Informacje </h2>
+                <p *ngIf="Order.Rate"><b>Stawka:</b> {{Order.Rate}}</p>
+                <p *ngIf="Order.NumberOfEmploye"><b>Ilość potrzebnych osób:</b> {{Order.NumberOfEmploye}}</p>
+                <p *ngIf="Order.WorkDate"><b>Dzień pracy:</b> {{Order.WorkDate}}</p>
+                <p *ngIf="Order.ResultDate"><b>Dzień wyników rekrutacji:</b> {{Order.ResultDate}}</p>
+                <p *ngIf="Order.ExecutionTime"><b>Czas pracy / rodzaj zlecenia:</b> {{Order.ExecutionTime}}</p>
+                <h2 *ngIf="Order.State || Order.City || Order.Street"> Adres </h2>
+                <p *ngIf="Order.State"><b>Województwo:</b> {{Order.State}}</p>
+                <p *ngIf="Order.City"><b>Miasto:</b> {{Order.City}}</p>
+                <p *ngIf="Order.Street"><b>Ulica:</b> {{Order.Street}}</p>
+                <h2> Wymagania </h2>
+                <p *ngFor="let item of Order.Requirements">{{item}}</p>
+                <h2> Opis </h2>
+                <p *ngFor="let item of Order.Description">{{item}}</p>
+            </md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner != 1" label="Zleceniodawca"><showprofile [UserId]="Order.EmployerId"></showprofile></md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner == 1" label="Kandydaci" #candidatetab><candidateorder [OrderId]="Order.Id" #candidate></candidateorder></md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner != 4" label="Wiadomości" #messagetab></md-tab>
+        </md-tab-group>
+    </md-card-content>
+    <md-card-actions>
+        <button *ngIf="OrderOwner && OrderOwner == 4" md-raised-button color="primary" (click)="SignIn()">Dołącz</button>
+        <button *ngIf="OrderOwner && OrderOwner == 2" md-raised-button color="warn" (click)="SignOut()">Zrezygnuj</button>
+        <button *ngIf="OrderOwner && OrderOwner == 1" md-raised-button color="warn" (click)="DeleteOrder()">Usuń</button>
+    </md-card-actions>
+</md-card>

@@ -54,6 +54,7 @@ namespace Base.Model.Model
         public DbSet<Message> Message { get; set; }
         public DbSet<AppUserPublicMessage> AppUserPublicMessage { get; set; }
         public DbSet<PublicMessage> PublicMessage { get; set; }
+        public DbSet<OrderCategory> OrderCategory { get; set; }
 
         private void AddUserConfiguration(DbModelBuilder modelBuilder)
         {
@@ -75,6 +76,7 @@ namespace Base.Model.Model
             modelBuilder.Configurations.Add(new OrderTypeConfiguration());
             modelBuilder.Configurations.Add(new AppUserOrderCandidateTypeConfiguration());
             modelBuilder.Configurations.Add(new AppUserOrderCustomerTypeConfiguration());
+            modelBuilder.Configurations.Add(new OrderCategoryTypeConfiguration());
         }
 
         private void AddMessageConfiguration(DbModelBuilder modelBuilder)
@@ -84,8 +86,6 @@ namespace Base.Model.Model
             modelBuilder.Configurations.Add(new AppUserPublicMessageTypeConfiguration());
             modelBuilder.Configurations.Add(new MessageTypeConfiguration());
         }
-
-
 
         public static PracaDorywczaDbContext Create()
         {

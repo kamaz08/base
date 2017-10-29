@@ -162,9 +162,15 @@
     <Content Include="Global.asax" />
     <Content Include="image\Default\default-user-img.jpg" />
     <Content Include="image\Default\User.png" />
+    <Content Include="src\app\component\content\order\add\add.order.component.html" />
+    <Content Include="src\app\component\content\order\candidates\candidate.order.component.html" />
+    <Content Include="src\app\component\content\order\list\list.order.component.html" />
+    <Content Include="src\app\component\content\order\show\show.order.component.html" />
     <Content Include="src\app\component\content\test\add\test.add.component.css" />
     <Content Include="src\app\component\content\test\add\test.add.component.html" />
-    <Content Include="src\app\component\content\user\profile\user.profile.component.html" />
+    <Content Include="src\app\component\content\user\profile\edit\security.edit.user.profile.component.html" />
+    <Content Include="src\app\component\content\user\profile\show\info.show.profile.component.html" />
+    <Content Include="src\app\component\content\user\profile\show\show.profile.component.html" />
     <Content Include="src\app\component\content\user\search\user.search.component.html" />
     <Content Include="src\app\component\start\start.component.css" />
     <Content Include="src\app\component\start\start.component.html" />
@@ -193,8 +199,11 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Account\AccountController.cs" />
-    <Compile Include="Controllers\Account\BaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Order\CandidateController.cs" />
+    <Compile Include="Controllers\Order\OrderController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,8 +230,20 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\order\add\add.order.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\order\candidates\candidate.order.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\order\list\list.order.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\order\show\show.order.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\test\add\test.add.component.ts" />
-    <TypeScriptCompile Include="src\app\component\content\user\profile\user.profile.component.ts" />
+    <Content Include="src\app\component\content\user\profile\edit\edit.user.profile.component.html" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\edit\edit.user.profile.component.ts" />
+    <Content Include="src\app\component\content\user\profile\edit\personal.edit.user.profile.component.html" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\edit\personal.edit.user.profile.component.ts" />
+    <Content Include="src\app\component\content\user\profile\edit\public.edit.user.profile.component.html" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\edit\public.edit.user.profile.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\edit\security.edit.user.profile.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\show\info.show.profile.component.ts" />
+    <TypeScriptCompile Include="src\app\component\content\user\profile\show\show.profile.component.ts" />
     <TypeScriptCompile Include="src\app\component\content\user\search\user.search.component.ts" />
     <TypeScriptCompile Include="src\app\component\dialog\error.dialog.component.ts" />
     <TypeScriptCompile Include="src\app\component\start\start.component.ts" />
@@ -233,10 +254,16 @@
     <TypeScriptCompile Include="src\app\component\userpanel\userpanel.component.ts" />
     <TypeScriptCompile Include="src\app\helper\error-handler.ts" />
     <TypeScriptCompile Include="src\app\model\authorization.models.ts" />
+    <TypeScriptCompile Include="src\app\model\candidate.models.ts" />
+    <TypeScriptCompile Include="src\app\model\order.models.ts" />
+    <TypeScriptCompile Include="src\app\model\userdata.models.ts" />
     <TypeScriptCompile Include="src\app\service\authorize.service.ts" />
     <TypeScriptCompile Include="src\app\service\base.service.ts" />
+    <TypeScriptCompile Include="src\app\service\candidate.service.ts" />
     <TypeScriptCompile Include="src\app\service\error.service.ts" />
     <TypeScriptCompile Include="src\app\service\login.service.ts" />
+    <TypeScriptCompile Include="src\app\service\order.service.ts" />
+    <TypeScriptCompile Include="src\app\service\user.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -251,10 +278,6 @@
   <ItemGroup>
     <Folder Include="src\app\component\content\message\" />
     <Folder Include="src\app\component\content\test\list\" />
-    <Folder Include="src\app\component\content\user\setting\" />
-    <Folder Include="src\app\component\content\work\profile\" />
-    <Folder Include="src\app\component\content\work\search\" />
-    <Folder Include="src\app\component\content\work\setting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base.Model\Base.Model.csproj">

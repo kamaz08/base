@@ -16,16 +16,6 @@ namespace Base.Model.Configuration
                 .IsRequired()
                 .HasMaxLength(256);
 
-            HasOptional(x => x.PersonalData)
-                .WithMany()
-                .HasForeignKey(x => x.PersonalDataId)
-                .WillCascadeOnDelete(true);
-
-            HasOptional(x => x.PersonalProfile)
-                .WithMany()
-                .HasForeignKey(x => x.PersonalProfileId)
-                .WillCascadeOnDelete(true);
-
             HasMany(x => x.UserOrder)
                 .WithRequired(x => x.Employer)
                 .HasForeignKey(x => x.EmployerId)

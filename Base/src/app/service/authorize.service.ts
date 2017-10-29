@@ -9,12 +9,10 @@ import { Router } from '@angular/router';
 export class AuthorizeService {
     constructor(private _http: HttpClient, private _router: Router) { }
 
-    private _accessToken: string;
+    public _accessToken: string;
     private _refreshToken: string;
     private _refreshFunc: any;
     private _lasttime: number;
-
-
 
     public CheckLogin(): void {
         if (this._accessToken == null || this._refreshToken == null) {
@@ -27,15 +25,13 @@ export class AuthorizeService {
     }
 
     public SetAccess(access: string, refresh: string): void {
-        debugger;
         this._accessToken = access;
         this._refreshToken = refresh;
-        this._refreshFunc = setInterval(() => this.refresh(), 1000 * 9 );
+        this._refreshFunc = setInterval(() => this.refresh(), 1000 * 60 * 4 );
         this._router.navigate(['start']);
     }
 
     private refresh() {
-        debugger;
         this._http.post(
             '/token',
             'grant_type=refresh_token&refresh_token=' + this._refreshToken,
@@ -51,8 +47,4 @@ export class AuthorizeService {
         this._accessToken = this._refreshToken = null;
         this._router.navigate(['login']);
     }
-
-
-
-
 }

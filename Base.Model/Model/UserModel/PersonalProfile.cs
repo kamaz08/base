@@ -20,7 +20,6 @@ namespace Base.Model.Model.User
         public String Education { get; set; }
         public String Description { get; set; }
 
-
         public virtual AppUser AppUser { get; set; }
     }
 }

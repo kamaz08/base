@@ -1,7 +1,8 @@
 ﻿using Base.App_Start;
 using Base.Model.Model;
 using Base.Model.Model.User;
-using Base.Model.ViewModel.AppUser;
+using Base.Model.Repository.User;
+using Base.Model.ViewModel.AppUserVM;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -17,10 +18,11 @@ namespace Base.Controllers.Account
     [Authorize]
     public class AccountController : BaseController
     {
-        private AppUserManager _AppUserManager = null;
-        protected AppUserManager AppUserManager => _AppUserManager ?? Request.GetOwinContext().GetUserManager<AppUserManager>();
-
-        public AccountController() { }
+        private UserRepository _UserRepo;
+        public AccountController()
+        {
+            this._UserRepo = new UserRepository();
+        }
 
         [HttpGet]
         [AllowAnonymous]
@@ -29,7 +31,6 @@ namespace Base.Controllers.Account
         {
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
                 return BadRequest("Nieporawny link");
-            
 
             IdentityResult result = await AppUserManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
@@ -45,12 +46,7 @@ namespace Base.Controllers.Account
             if (model == null || !ModelState.IsValid)
                 return GetErrorResultModel();
 
-            AppUser user = new AppUser
-            {
-                UserName = model.UserName,
-                Email = model.Email,
-                TwoFactorEnabled = true
-            };
+            AppUser user = _UserRepo.CreateUser(model);
 
             var result = await AppUserManager.CreateAsync(user, model.Password);
 
@@ -95,9 +91,13 @@ namespace Base.Controllers.Account
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IHttpActionResult Test()
         {
             PracaDorywczaDbContext x = new PracaDorywczaDbContext();
+            var haha = x.Order.ToList();
+
+
             AppUser us = AppUserManager.FindByName(RequestContext.Principal.Identity.GetUserName());
             var x1 = x.Order.Add(new Model.Model.OrderModel.Order
             {
@@ -110,7 +110,7 @@ namespace Base.Controllers.Account
             });
             x.SaveChanges();
 
-            var todele = x.Order.First(r => r.Id ==2);
+            var todele = x.Order.First(r => r.Id == 2);
             x.Order.Where(y => y.Employer == us);
 
             x.Order.Remove(todele);
@@ -119,22 +119,32 @@ namespace Base.Controllers.Account
             return Ok();
         }
 
-        #region SendEmail
-        private async Task SendVerivicationCode(string userid)
+        [HttpPost]
+        public async Task<IHttpActionResult> ChangeEmail(ChangeEmailVM model)
         {
-            string code = await AppUserManager.GenerateEmailConfirmationTokenAsync(userid);
-            var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = userid, code = code }));
-            await AppUserManager.SendEmailAsync(userid, "Potwierdź swoje konto", "Proszę potwierdź swój adres email klikając w <a href=\"" + callbackUrl + "\">Ten link</a>");
+            if (model == null || !ModelState.IsValid)
+                return GetErrorResultModel();
+
+            var user = await GetCurrentUser();
+            _UserRepo.ChangeEmail(user.Id, model.Email);
+
+            return Ok();
         }
 
-
-        public async Task SendTwoFactorAuthoriazation(string userid)
+        [HttpPost]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordVM model)
         {
-            string code = await AppUserManager.GenerateTwoFactorTokenAsync(userid, "Email Code");
+            if (model == null || !ModelState.IsValid)
+                return GetErrorResultModel();
 
-            await AppUserManager.SendEmailAsync(userid, "Twoje jednorazowe hasło ", $"Twoje jednorazowe hasło to {code}");
+            var user = await GetCurrentUser();
+
+            var result = await AppUserManager.ChangePasswordAsync(user.Id, model.OldPassword, model.Password);
+
+            if (!result.Succeeded)
+                return BadRequest("Niepoprawne hasło");
+
+            return Ok();
         }
-
-        #endregion
     }
 }

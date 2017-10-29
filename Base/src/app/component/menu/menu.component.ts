@@ -11,17 +11,16 @@ export class MenuComponent {
             name: 'Twoje konto', list: [
                 { name: 'Twój profil', icon: 'perm_identity', router: 'profile' },
                 { name: 'Edytuj profil', icon: 'create', router: 'editprofile' },
-                { name: 'Twoje ofety', icon: 'content_copy', router: 'yourjobs' },
+                { name: 'Preferencje', icon: 'build', router: 'workprofile' }
             ]
         },
         {
             name: 'Praca', list: [
-                { name: 'Preferencje', icon: 'build', router: 'workprofile' },
+                { name: 'Szukaj', icon: 'search', router: 'searchjob' },
+                { name: 'Twoje ofety', icon: 'content_copy', router: 'yourjobs' },
                 { name: 'Twoje aplikacje', icon: 'class', router: 'application' },
                 { name: 'Dodaj ofertę', icon: 'note_add', router: 'add' },
-                { name: 'Oceń', icon: 'gavel', router: 'rate' },
-                { name: 'Szukaj', icon: 'search', router: 'searchjob' }
-
+                { name: 'Oceń', icon: 'gavel', router: 'rate' }
             ]
         },
         {

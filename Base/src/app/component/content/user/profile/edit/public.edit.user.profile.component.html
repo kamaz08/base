@@ -1,0 +1,32 @@
+﻿<div *ngIf="isLoading">
+    <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <form (ngSubmit)="onSubmit(PublicData._value)" [formGroup]="PublicData">
+        <div class="form-width">
+            <md-checkbox formControlName="ShowFirstName">Pokaż imię</md-checkbox>
+        </div>
+        <div class="form-width">
+            <md-checkbox class="form-width" formControlName="ShowLastName">Pokaż nazwisko</md-checkbox>
+        </div>
+        <div class="form-width">
+            <md-checkbox formControlName="ShowBirthDate">Pokaż date urodzenia</md-checkbox>
+        </div>
+        <br />
+        <div class="form-width">
+            <md-checkbox formControlName="ShowPhoneNumber">Pokaż numer telefonu</md-checkbox>
+        </div>
+        <div class="form-width">
+            <md-checkbox class="form-full-width" formControlName="ShowEmail">Pokaż adres email</md-checkbox>
+        </div>
+        <md-form-field class="form-full-width">
+            <textarea mdInput formControlName="Education" placeholder="Edukacja"></textarea>
+        </md-form-field>
+        <br />
+        <md-form-field class="form-full-width">
+            <textarea mdInput formControlName="Description" placeholder="O sobie"></textarea>
+        </md-form-field>
+        <br />
+        <button type="submit" md-raised-button color="primary">Zapisz</button>
+    </form>
+</div>

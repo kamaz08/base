@@ -34,34 +34,4 @@ export class LoginService {
             { headers: new HttpHeaders().set('Content-Type', 'application/json') }
         );
     };
-
-
-
-    //get(url: string): Observable<any> {
-    //    return this._http.get(url)
-    //        .map((response: Response) => <any>response.json());
-    //}
-
-    //post(url: string, model: any): Observable<any> {
-    //    let body = JSON.stringify(model);
-    //    let headers = new Headers({ 'Content-Type': 'application/json' });
-    //    let options = new RequestOptions({ headers: headers });
-    //    return this._http.post(url, body, options)
-    //        .map((response: Response) => <any>response.json());
-    //}
-
-    //put(url: string, id: number, model: any): Observable<any> {
-    //    let body = JSON.stringify(model);
-    //    let headers = new Headers({ 'Content-Type': 'application/json' });
-    //    let options = new RequestOptions({ headers: headers });
-    //    return this._http.put(url + id, body, options)
-    //        .map((response: Response) => <any>response.json());
-    //}
-
-    //delete(url: string, id: number): Observable<any> {
-    //    let headers = new Headers({ 'Content-Type': 'application/json' });
-    //    let options = new RequestOptions({ headers: headers });
-    //    return this._http.delete(url + id, options)
-    //        .map((response: Response) => <any>response.json());
-    //}
 }

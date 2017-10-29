@@ -1,0 +1,17 @@
+﻿<div *ngIf="!PublicData">
+    <md-spinner></md-spinner>
+</div>
+<div *ngIf="PublicData">
+    <h1> Użytkownik: {{PublicData.Login}}</h1>
+    <h2> Dane osobwe</h2>
+    <p *ngIf="PublicData.FirstName"><b>Imie:</b> {{PublicData.FirstName}}</p>
+    <p *ngIf="PublicData.LastName"><b>Nazwisko:</b> {{PublicData.LastName}}</p>
+    <p *ngIf="PublicData.BirthDate"><b>Data Urodzin:</b> {{PublicData.BirthDate}}</p>
+    <h2 *ngIf="PublicData.PhoneNumber || PublicData.Email">Kontakt</h2>
+    <p *ngIf="PublicData.PhoneNumber"><b>Numer telefonu:</b> {{PublicData.PhoneNumber}}</p>
+    <p *ngIf="PublicData.Email"><b>Email:</b> {{PublicData.Email}}</p>
+    <h2>Edukacja</h2>
+    <p *ngFor="let item of PublicData.Education">{{item}}</p>
+    <h2>Opis</h2>
+    <p *ngFor="let item of PublicData.Description">{{item}}</p>
+</div>

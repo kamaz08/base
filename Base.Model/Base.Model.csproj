@@ -101,6 +101,7 @@
     <Compile Include="Configuration\MessageConfiguration\PrivateMessageTypeConfiguration.cs" />
     <Compile Include="Configuration\MessageConfiguration\PublicMessageTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\AppUserOrderCandidateTypeConfiguration.cs" />
+    <Compile Include="Configuration\OrderConfiguration\OrderCategoryTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\OrderDetailTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\OrderTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\AppUserOrderCustomerTypeConfiguration.cs" />
@@ -109,53 +110,21 @@
     <Compile Include="Configuration\UserConfiguration\PersonalDataTypeConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration\PersonalProfileTypeConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration\RefreshtokenTypeConfiguration.cs" />
-    <Compile Include="Migrations\201709251055085_InitBazydanych.cs" />
-    <Compile Include="Migrations\201709251055085_InitBazydanych.Designer.cs">
-      <DependentUpon>201709251055085_InitBazydanych.cs</DependentUpon>
+    <Compile Include="Migrations\201710252118511_Init.cs" />
+    <Compile Include="Migrations\201710252118511_Init.Designer.cs">
+      <DependentUpon>201710252118511_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709260932174_identityUser.cs" />
-    <Compile Include="Migrations\201709260932174_identityUser.Designer.cs">
-      <DependentUpon>201709260932174_identityUser.cs</DependentUpon>
+    <Compile Include="Migrations\201710271715257_OrderCategory.cs" />
+    <Compile Include="Migrations\201710271715257_OrderCategory.Designer.cs">
+      <DependentUpon>201710271715257_OrderCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709261142096_emailRequried.cs" />
-    <Compile Include="Migrations\201709261142096_emailRequried.Designer.cs">
-      <DependentUpon>201709261142096_emailRequried.cs</DependentUpon>
+    <Compile Include="Migrations\201710271727421_OrderCategory2.cs" />
+    <Compile Include="Migrations\201710271727421_OrderCategory2.Designer.cs">
+      <DependentUpon>201710271727421_OrderCategory2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709262157123_RefreshToken.cs" />
-    <Compile Include="Migrations\201709262157123_RefreshToken.Designer.cs">
-      <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710051651561_Users.cs" />
-    <Compile Include="Migrations\201710051651561_Users.Designer.cs">
-      <DependentUpon>201710051651561_Users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710051945418_Users2.cs" />
-    <Compile Include="Migrations\201710051945418_Users2.Designer.cs">
-      <DependentUpon>201710051945418_Users2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081140090_TypeConfigurationTest.cs" />
-    <Compile Include="Migrations\201710081140090_TypeConfigurationTest.Designer.cs">
-      <DependentUpon>201710081140090_TypeConfigurationTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081156065_TypeConfigurationTest2.cs" />
-    <Compile Include="Migrations\201710081156065_TypeConfigurationTest2.Designer.cs">
-      <DependentUpon>201710081156065_TypeConfigurationTest2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081423074_AddOrder.cs" />
-    <Compile Include="Migrations\201710081423074_AddOrder.Designer.cs">
-      <DependentUpon>201710081423074_AddOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081625123_UserOrderTest.cs" />
-    <Compile Include="Migrations\201710081625123_UserOrderTest.Designer.cs">
-      <DependentUpon>201710081625123_UserOrderTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081737400_Voting.cs" />
-    <Compile Include="Migrations\201710081737400_Voting.Designer.cs">
-      <DependentUpon>201710081737400_Voting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710082000459_Message.cs" />
-    <Compile Include="Migrations\201710082000459_Message.Designer.cs">
-      <DependentUpon>201710082000459_Message.cs</DependentUpon>
+    <Compile Include="Migrations\201710282007117_OrderState.cs" />
+    <Compile Include="Migrations\201710282007117_OrderState.Designer.cs">
+      <DependentUpon>201710282007117_OrderState.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Enum\VoteTypeEnum.cs" />
@@ -167,6 +136,7 @@
     <Compile Include="Model\MessageModel\PublicMessage.cs" />
     <Compile Include="Model\OrderModel\AppUserOrderCustomer.cs" />
     <Compile Include="Model\OrderModel\AppUserOrderCandidate.cs" />
+    <Compile Include="Model\OrderModel\CategoryOrder.cs" />
     <Compile Include="Model\OrderModel\Vote.cs" />
     <Compile Include="Model\UserModel\AppUser.cs" />
     <Compile Include="Model\OrderModel\Order.cs" />
@@ -177,49 +147,37 @@
     <Compile Include="Model\UserModel\PersonalProfile.cs" />
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\AppUser\LoginVM.cs" />
-    <Compile Include="ViewModel\AppUser\RegistrationUserVM.cs" />
+    <Compile Include="Repository\Location\LocationRepository.cs" />
+    <Compile Include="Repository\Order\CandidateRepository.cs" />
+    <Compile Include="Repository\Order\OrderRepository.cs" />
+    <Compile Include="Repository\User\PersonalDataRepository.cs" />
+    <Compile Include="Repository\User\UserRepository.cs" />
+    <Compile Include="ViewModel\AppUserVM\ChangeEmailVM.cs" />
+    <Compile Include="ViewModel\AppUserVM\ChangePasswordVM.cs" />
+    <Compile Include="ViewModel\AppUserVM\LoginVM.cs" />
+    <Compile Include="ViewModel\AppUserVM\RegistrationUserVM.cs" />
+    <Compile Include="ViewModel\Location\AddressVM.cs" />
+    <Compile Include="ViewModel\Orders\CandidateVM.cs" />
+    <Compile Include="ViewModel\Orders\OrderDisplayVM.cs" />
+    <Compile Include="ViewModel\Orders\OrderOwnerEnum.cs" />
+    <Compile Include="ViewModel\Orders\OrderVM.cs" />
+    <Compile Include="ViewModel\UserVM\PersonalDataVM.cs" />
+    <Compile Include="ViewModel\UserVM\PersonalProfileVM.cs" />
+    <Compile Include="ViewModel\UserVM\PublicDataVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709251055085_InitBazydanych.resx">
-      <DependentUpon>201709251055085_InitBazydanych.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710252118511_Init.resx">
+      <DependentUpon>201710252118511_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709260932174_identityUser.resx">
-      <DependentUpon>201709260932174_identityUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710271715257_OrderCategory.resx">
+      <DependentUpon>201710271715257_OrderCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709261142096_emailRequried.resx">
-      <DependentUpon>201709261142096_emailRequried.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710271727421_OrderCategory2.resx">
+      <DependentUpon>201710271727421_OrderCategory2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709262157123_RefreshToken.resx">
-      <DependentUpon>201709262157123_RefreshToken.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710282007117_OrderState.resx">
+      <DependentUpon>201710282007117_OrderState.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710051651561_Users.resx">
-      <DependentUpon>201710051651561_Users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710051945418_Users2.resx">
-      <DependentUpon>201710051945418_Users2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081140090_TypeConfigurationTest.resx">
-      <DependentUpon>201710081140090_TypeConfigurationTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081156065_TypeConfigurationTest2.resx">
-      <DependentUpon>201710081156065_TypeConfigurationTest2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081423074_AddOrder.resx">
-      <DependentUpon>201710081423074_AddOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081625123_UserOrderTest.resx">
-      <DependentUpon>201710081625123_UserOrderTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081737400_Voting.resx">
-      <DependentUpon>201710081737400_Voting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710082000459_Message.resx">
-      <DependentUpon>201710082000459_Message.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

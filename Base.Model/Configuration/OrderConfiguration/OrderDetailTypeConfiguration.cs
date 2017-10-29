@@ -11,7 +11,7 @@ namespace Base.Model.Configuration
     {
         public OrderDetailTypeConfiguration()
         {
-            HasKey(x => x.Id);
+            HasKey(x => x.OrderId);
 
             HasRequired(x => x.Order)
                 .WithMany()

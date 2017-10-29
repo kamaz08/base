@@ -1,0 +1,5 @@
+﻿<md-list>
+    <md-list-item *ngFor="let item of Candidates">
+        <md-checkbox></md-checkbox><div (click)="openDialog(item.Id)"><h3>{{item.Name}}</h3><div style="width:auto"></div><h3>Ocena:{{item.Rate}}</h3></div>
+    </md-list-item>
+</md-list>

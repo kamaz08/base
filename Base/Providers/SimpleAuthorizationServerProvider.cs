@@ -41,13 +41,13 @@ namespace Base.Providers
                 //    context.SetError("invalid_grant", "Potwierdź swój email");
                 //    return;
                 //}
-                string otp = context.OwinContext.Get<string>("otpkey");
-                bool otpcheck = await userManager.VerifyTwoFactorTokenAsync(user.Id, "Email Code", otp);
-                if (!otpcheck)
-                {
-                    context.SetError("invalid_grant", "Hasło jednorazowe jest nie poprawne");
-                    return;
-                }
+                //string otp = context.OwinContext.Get<string>("otpkey");
+                //bool otpcheck = await userManager.VerifyTwoFactorTokenAsync(user.Id, "Email Code", otp);
+                //if (!otpcheck)
+                //{
+                //    context.SetError("invalid_grant", "Hasło jednorazowe jest nie poprawne");
+                //    return;
+                //}
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);

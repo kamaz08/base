@@ -11,7 +11,7 @@ namespace Base.Model.Configuration
     {
         public PersonalDataTypeConfiguration()
         {
-            HasKey(x => x.id);
+            HasKey(x => x.Id);
             Property(x => x.FirstName)
                 .HasMaxLength(32);
 
@@ -36,8 +36,7 @@ namespace Base.Model.Configuration
 
             HasOptional(x => x.Address)
                 .WithMany()
-                .HasForeignKey(x => x.AddressId)
-                .WillCascadeOnDelete(true);
+                .HasForeignKey(x => x.AddressId);
 
         }
     }

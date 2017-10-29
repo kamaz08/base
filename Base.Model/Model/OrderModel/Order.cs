@@ -15,6 +15,7 @@ namespace Base.Model.Model.OrderModel
         public String Name { get; set; }
         public String Rate { get; set; }
         public int NumberOfEmploye { get; set; }
+        public bool IsOpen { get; set; }
 
         public int? AddressId { get; set; }
         public Address Address { get; set; }
@@ -25,6 +26,9 @@ namespace Base.Model.Model.OrderModel
 
         public String EmployerId { get; set; }
         public virtual AppUser Employer { get; set; }
+
+        public int CategoryId { get; set; }
+        public virtual OrderCategory Category { get; set; }
 
         public virtual OrderDetail OrderDetail { get; set; }
 

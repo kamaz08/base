@@ -12,7 +12,7 @@ import { MD_DIALOG_DATA, MdDialogRef, MdDialog } from "@angular/material";
 export class ErrorDialog {
     constructor(
         public dialogRef: MdDialogRef<ErrorDialog>,
-        @Inject(MD_DIALOG_DATA) public data: any) { debugger; }
+        @Inject(MD_DIALOG_DATA) public data: any) { }
 
     onNoClick(): void {
         this.dialogRef.close();

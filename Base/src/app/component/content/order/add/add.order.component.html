@@ -1,0 +1,56 @@
+﻿<form (ngSubmit)="onSubmit(Order._value)" [formGroup]="Order">
+    <md-form-field class="form-width">
+        <input mdInput formControlName="Name" placeholder="Nazwa">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="Category" placeholder="Kategoria">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="Rate" placeholder="Stawka">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input type="number" mdInput formControlName="NumberOfEmploye" placeholder="Ile osób potrzebujesz">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="ExecutionTime" placeholder="Na jak długo">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="State" placeholder="Województwo">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="City" placeholder="Miasto">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input mdInput formControlName="Street" placeholder="Ulica">
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input type="text" mdInput [mdDatepicker]="picker" formControlName="ResultDate" placeholder="Data wyników rekrutacji">
+        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+        <md-datepicker #picker></md-datepicker>
+    </md-form-field>
+    <br />
+    <md-form-field class="form-width">
+        <input type="text" mdInput [mdDatepicker]="picker1" formControlName="WorkDate" placeholder="Data pracy">
+        <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+        <md-datepicker #picker1></md-datepicker>
+    </md-form-field>
+    <br />
+    <md-form-field class="form-full-width">
+        <textarea mdInput formControlName="Requirements" placeholder="Wymagania"></textarea>
+    </md-form-field>
+    <br />
+    <md-form-field class="form-full-width">
+        <textarea mdInput formControlName="Description" placeholder="Opis zadania"></textarea>
+    </md-form-field>
+    <br />
+    <br />
+    <button type="submit" md-raised-button color="primary">Dodaj ogłoszenie</button>
+</form>

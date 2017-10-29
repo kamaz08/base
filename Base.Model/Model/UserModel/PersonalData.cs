@@ -11,12 +11,12 @@ namespace Base.Model.Model.User
 {
     public class PersonalData
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public String AppUserId { get; set; }
         public int? AddressId { get; set; }
         public String FirstName { get; set; }
         public String LastName { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public String Pesel { get; set; }
         public String PhoneNumber { get; set; }
         public DateTime DateCreated { get; set; }
