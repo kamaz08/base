@@ -6,13 +6,13 @@ using System.Web;
 
 namespace Base.Model.ViewModel.Orders
 {
-    public class CandidateVM
+    public class CustomerVM
     {
         public String Id { get; set; }
         public String Name { get; set; }
         public Decimal Rate { get; set; }
 
-        public static implicit operator CandidateVM(AppUser model) => new CandidateVM
+        public static implicit operator CustomerVM(AppUser model) => new CustomerVM
         {
             Id = model.Id,
             Name = model.UserName,

@@ -5,7 +5,7 @@ import { AuthorizeService } from './authorize.service';
 import { IOrder } from './../model/order.models';
 
 @Injectable()
-export class CandidateService {
+export class CustomerService {
 
     constructor(private _http: HttpClient, private _auth: AuthorizeService) { }
 
@@ -19,7 +19,7 @@ export class CandidateService {
 
     public GetCandidates(id: Number): Observable<any> {
         return this._http.get(
-            '/api/Candidate/GetOrderCandidates?id=' + id,
+            '/api/Customer/GetOrderCustomers?id=' + id,
             { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
         );
     }

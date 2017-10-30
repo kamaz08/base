@@ -21,10 +21,6 @@ namespace Base.Model.Configuration
                 .HasForeignKey(x => x.EmployerId)
                 .WillCascadeOnDelete(true);
 
-            HasMany(x => x.OrderCandidate)
-                .WithRequired(x => x.AppUser)
-                .HasForeignKey(x => x.AppUserId);
-
             HasMany(x => x.OrderCustomer)
                 .WithRequired(x => x.AppUser)
                 .HasForeignKey(x => x.AppUserId);

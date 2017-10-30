@@ -35,10 +35,6 @@ namespace Base.Model.Configuration
                 .WithMany()
                 .HasForeignKey(x => x.AddressId);
 
-            HasMany(x => x.Candidate)
-                .WithRequired(x => x.Order)
-                .HasForeignKey(x => x.OrderId);
-
             HasMany(x => x.Customer)
                 .WithRequired(x => x.Order)
                 .HasForeignKey(x => x.OrderId);

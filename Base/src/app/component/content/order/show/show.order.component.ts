@@ -2,7 +2,7 @@
 import { IOrderDisplay, OrderOwnerEnum } from './../../../../model/order.models';
 import { OrderService } from './../../../../service/order.service';
 
-import { CandidateOrderComponent } from './../candidates/candidate.order.component'
+import { CustomerOrderComponent } from './../customer/customer.order.component'
 
 @Component({
     selector: 'showorder',
@@ -14,10 +14,10 @@ export class ShowOrderComponent {
     public Order: IOrderDisplay;
     public OrderOwner: OrderOwnerEnum;
 
-    @ViewChild('candidatetab') candidatetab: any;
+    @ViewChild('customertab') customertab: any;
     @ViewChild('messagetab') messagetab: any;
-    @ViewChild('candidate')
-    private candidateComponent: CandidateOrderComponent;
+    @ViewChild('customer')
+    private customerComponent: CustomerOrderComponent;
 
 
     constructor(private _service: OrderService) { }
@@ -26,10 +26,10 @@ export class ShowOrderComponent {
     }
 
     tabChanged = (tabChangeEvent: any): void => {
-        if (this.candidatetab && this.candidatetab.isActive) {
-            this.candidateComponent.GetCandidates();
+        if (this.customertab && this.customertab.isActive) {
+            this.customerComponent.GetCustomers();
         }
-        if (this.messagetab && this.messagetab.isActive) {
+        if (this.customerComponent && this.messagetab.isActive) {
 
         }
     }

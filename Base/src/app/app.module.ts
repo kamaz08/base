@@ -23,7 +23,7 @@ import { AuthorizeService } from './service/authorize.service';
 import { ErrorService } from './service/error.service';
 import { UserService } from './service/user.service';
 import { OrderService } from './service/order.service';
-import { CandidateService } from './service/candidate.service';
+import { CustomerService } from './service/customer.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component'
@@ -39,7 +39,7 @@ import { ShowProfileComponent } from './component/content/user/profile/show/show
 import { InfoShowProfileComponent } from './component/content/user/profile/show/info.show.profile.component';
 import { ShowOrderComponent } from './component/content/order/show/show.order.component'
 import { ListOrderComponent } from './component/content/order/list/list.order.component'
-import { CandidateOrderComponent, CandidateDialog } from './component/content/order/candidates/candidate.order.component'
+import { CustomerOrderComponent, CustomerDialog } from './component/content/order/customer/customer.order.component'
 
 
 import { UserSearchComponent } from './component/content/user/search/user.search.component';
@@ -52,17 +52,17 @@ import { TestAddComponent } from './component/content/test/add/test.add.componen
         MatTabsModule, MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatCardModule,
         MatButtonModule, MatDialogModule, MatDatepickerModule, MdNativeDateModule, MatProgressSpinnerModule, MatCheckboxModule
     ],
-    entryComponents: [ErrorDialog, CandidateDialog],
+    entryComponents: [ErrorDialog, CustomerDialog],
     declarations: [
         AppComponent, LoginComponent, StartComponent, UserComponent, MenuComponent, UserSearchComponent, TestAddComponent,
         ErrorDialog, EditUserProfileComponent, PersonalEditUserProfileComponent, PublicEditUserProfileComponent,
         SecurityEditUserProfileComponent, AddOrderComponent, InfoShowProfileComponent, ShowProfileComponent, ShowOrderComponent,
-        ListOrderComponent, CandidateOrderComponent, CandidateDialog
+        ListOrderComponent, CustomerOrderComponent, CustomerDialog
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: ErrorHandler, useClass: GlobalErrorHandler },
-        ErrorService, LoginService, AuthorizeService, UserService, OrderService, CandidateService],
+        ErrorService, LoginService, AuthorizeService, UserService, OrderService, CustomerService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

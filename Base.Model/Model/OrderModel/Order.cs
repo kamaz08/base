@@ -32,7 +32,6 @@ namespace Base.Model.Model.OrderModel
 
         public virtual OrderDetail OrderDetail { get; set; }
 
-        public virtual ICollection<AppUserOrderCandidate> Candidate { get; set; }
         public virtual ICollection<AppUserOrderCustomer> Customer { get; set; }
         public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
 

@@ -100,7 +100,6 @@
     <Compile Include="Configuration\MessageConfiguration\MessageTypeConfiguration.cs" />
     <Compile Include="Configuration\MessageConfiguration\PrivateMessageTypeConfiguration.cs" />
     <Compile Include="Configuration\MessageConfiguration\PublicMessageTypeConfiguration.cs" />
-    <Compile Include="Configuration\OrderConfiguration\AppUserOrderCandidateTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\OrderCategoryTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\OrderDetailTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\OrderTypeConfiguration.cs" />
@@ -126,6 +125,10 @@
     <Compile Include="Migrations\201710282007117_OrderState.Designer.cs">
       <DependentUpon>201710282007117_OrderState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710301705546_removeCandidate.cs" />
+    <Compile Include="Migrations\201710301705546_removeCandidate.Designer.cs">
+      <DependentUpon>201710301705546_removeCandidate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Enum\VoteTypeEnum.cs" />
     <Compile Include="Model\LocationModel\City.cs" />
@@ -135,7 +138,6 @@
     <Compile Include="Model\MessageModel\PrivateMessage.cs" />
     <Compile Include="Model\MessageModel\PublicMessage.cs" />
     <Compile Include="Model\OrderModel\AppUserOrderCustomer.cs" />
-    <Compile Include="Model\OrderModel\AppUserOrderCandidate.cs" />
     <Compile Include="Model\OrderModel\CategoryOrder.cs" />
     <Compile Include="Model\OrderModel\Vote.cs" />
     <Compile Include="Model\UserModel\AppUser.cs" />
@@ -148,7 +150,7 @@
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Location\LocationRepository.cs" />
-    <Compile Include="Repository\Order\CandidateRepository.cs" />
+    <Compile Include="Repository\Order\CustomerRepository.cs" />
     <Compile Include="Repository\Order\OrderRepository.cs" />
     <Compile Include="Repository\User\PersonalDataRepository.cs" />
     <Compile Include="Repository\User\UserRepository.cs" />
@@ -177,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710282007117_OrderState.resx">
       <DependentUpon>201710282007117_OrderState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301705546_removeCandidate.resx">
+      <DependentUpon>201710301705546_removeCandidate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

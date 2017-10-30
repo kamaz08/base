@@ -22,7 +22,7 @@
                 <p *ngFor="let item of Order.Description">{{item}}</p>
             </md-tab>
             <md-tab *ngIf="OrderOwner && OrderOwner != 1" label="Zleceniodawca"><showprofile [UserId]="Order.EmployerId"></showprofile></md-tab>
-            <md-tab *ngIf="OrderOwner && OrderOwner == 1" label="Kandydaci" #candidatetab><candidateorder [OrderId]="Order.Id" #candidate></candidateorder></md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner == 1" label="Kandydaci" #customertab><customerorder [OrderId]="Order.Id" #customer></customerorder></md-tab>
             <md-tab *ngIf="OrderOwner && OrderOwner != 4" label="Wiadomości" #messagetab></md-tab>
         </md-tab-group>
     </md-card-content>

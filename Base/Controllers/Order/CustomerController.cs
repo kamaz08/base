@@ -11,21 +11,21 @@ using System.Web.Http;
 namespace Base.Controllers.Order
 {
     [Authorize]
-    public class CandidateController : BaseController
+    public class CustomerController : BaseController
     {
-        CandidateRepository candidateRepository;
+        CustomerRepository CustomerRepository;
 
-        public CandidateController()
+        public CustomerController()
         {
-            candidateRepository = new CandidateRepository();
+            CustomerRepository = new CustomerRepository();
         }
 
 
         [HttpGet]
-        public async Task<List<CandidateVM>> GetOrderCandidates(int id)
+        public async Task<List<CustomerVM>> GetOrderCustomers(int id)
         {
             var user = await GetCurrentUser();
-            return candidateRepository.GetCandidates(user.Id, id);
+            return CustomerRepository.GetCandidates(user.Id, id);
         }
         
 

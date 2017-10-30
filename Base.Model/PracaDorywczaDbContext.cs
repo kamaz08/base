@@ -45,7 +45,6 @@ namespace Base.Model.Model
         public DbSet<State> State { get; set; }
 
         public DbSet<Order> Order { get; set; }
-        public DbSet<AppUserOrderCandidate> OrderCandidate { get; set; }
         public DbSet<AppUserOrderCustomer> OrderCustomer { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Vote> Vote { get; set; }
@@ -74,7 +73,6 @@ namespace Base.Model.Model
         private void AddOrderConfiguration(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new OrderTypeConfiguration());
-            modelBuilder.Configurations.Add(new AppUserOrderCandidateTypeConfiguration());
             modelBuilder.Configurations.Add(new AppUserOrderCustomerTypeConfiguration());
             modelBuilder.Configurations.Add(new OrderCategoryTypeConfiguration());
         }

@@ -12,6 +12,7 @@ namespace Base.Model.Model.OrderModel
         public int Id { get; set; }
         public String AppUserId { get; set; }
         public int OrderId { get; set; }
+        public bool IsAccepted { get; set; }
 
         public virtual Order Order { get; private set; }
         public virtual AppUser AppUser { get; private set; }

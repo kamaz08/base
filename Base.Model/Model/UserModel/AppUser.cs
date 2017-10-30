@@ -19,7 +19,6 @@ namespace Base.Model.Model.User
         public virtual PersonalProfile PersonalProfile { get; set; }
 
         public virtual ICollection<Order> UserOrder { get; set; }
-        public virtual ICollection<AppUserOrderCandidate> OrderCandidate { get; set; }
         public virtual ICollection<AppUserOrderCustomer> OrderCustomer { get; set; }
         public virtual ICollection<Vote> Vote { get; set; }
         public virtual ICollection<Vote> Rater { get; set; }

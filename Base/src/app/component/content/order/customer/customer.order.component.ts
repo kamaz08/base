@@ -1,32 +1,33 @@
 ﻿import { Component, Input, Inject } from '@angular/core';
-import { ICandidate } from './../../../../model/candidate.models';
-import { CandidateService } from './../../../../service/candidate.service';
+import { ICustomer } from './../../../../model/customer.models';
+import { CustomerService } from './../../../../service/customer.service';
 import { ShowOrderComponent } from './../show/show.order.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-    selector: 'candidateorder',
-    templateUrl: './candidate.order.component.html',
+    selector: 'customerorder',
+    templateUrl: './customer.order.component.html',
     styles: [``]
 })
-export class CandidateOrderComponent {
+export class CustomerOrderComponent {
     @Input()
     public OrderId: Number;
-    public Candidates: ICandidate;
+    public Candidates: ICustomer;
 
-    constructor(private _service: CandidateService, public dialog: MatDialog) { }
+    constructor(private _service: CustomerService, public dialog: MatDialog) { }
     ngOnInit() {
         
     }
 
     openDialog(Id: String): void {
         debugger;
-        let dialogRef = this.dialog.open(CandidateDialog, {
+        let dialogRef = this.dialog.open(CustomerDialog, {
             data: Id
         });
     }
 
-    GetCandidates() {
+    GetCustomers() {
+        debugger;
         this._service.GetCandidates(this.OrderId).subscribe(x => { debugger; this.Candidates = x });
     }
 
@@ -34,13 +35,13 @@ export class CandidateOrderComponent {
 }
 
 @Component({
-    selector: 'CandidateDialog',
+    selector: 'CustomerDialog',
     template: '<showprofile UserId={{Id}}></showprofile>',
 })
-export class CandidateDialog {
+export class CustomerDialog {
 
     constructor(
-        public dialogRef: MatDialogRef<CandidateDialog>,
+        public dialogRef: MatDialogRef<CustomerDialog>,
         @Inject(MAT_DIALOG_DATA) public Id: string) { }
 
     onNoClick(): void {

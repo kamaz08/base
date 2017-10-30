@@ -8,16 +8,16 @@ using System.Web;
 
 namespace Base.Model.Repository.OrderNameSpace
 {
-    public class CandidateRepository
+    public class CustomerRepository
     {
         private PracaDorywczaDbContext db;
 
-        public CandidateRepository()
+        public CustomerRepository()
         {
             this.db = new PracaDorywczaDbContext();
         }
 
-        public List<CandidateVM> GetCandidates(String userId, int orderId)
+        public List<CustomerVM> GetCandidates(String userId, int orderId)
         {
             var order = db.Order
                 .Where(x => x.Id == orderId)
@@ -28,10 +28,10 @@ namespace Base.Model.Repository.OrderNameSpace
                 return null;
 
             return order
-                .Candidate
+                .Customer
                 .Select(x => x.AppUser)
                 .ToList()
-                .Select<AppUser, CandidateVM>(x=>x)
+                .Select<AppUser, CustomerVM>(x=>x)
                 .ToList();
         }
 

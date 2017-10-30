@@ -42,8 +42,8 @@ namespace Base.Model.Repository.OrderNameSpace
             var order = db.Order.Where(x => x.Id == orderId).First();
 
             if (order.EmployerId == userId) return OrderOwnerEnum.Author;
-            if (order.Customer.Any(x => x.AppUserId == userId)) return OrderOwnerEnum.Customer;
-            if (order.Candidate.Any(x => x.AppUserId == userId)) return OrderOwnerEnum.Candidate;
+            if (order.Customer.Any(x => x.AppUserId == userId && x.IsAccepted)) return OrderOwnerEnum.Customer;
+            if (order.Customer.Any(x => x.AppUserId == userId && !x.IsAccepted)) return OrderOwnerEnum.Candidate;
 
             return OrderOwnerEnum.Guest;
         }
@@ -100,17 +100,13 @@ namespace Base.Model.Repository.OrderNameSpace
             if (order == null || !order.IsOpen || order.EmployerId == userId || order.WorkDate < DateTime.Now)
                 return false;
 
-            int count = order.Candidate
+            bool isIn = order.Customer
                 .Where(x => x.AppUserId == userId)
-                .Count();
-            count += order.Customer
-                .Where(x => x.AppUserId == userId)
-                .Count();
+                .Count() > 0;
 
-            if (count > 0)
-                return true;
+            if (isIn) return true;
 
-            db.OrderCandidate.Add(new AppUserOrderCandidate
+            db.OrderCustomer.Add(new AppUserOrderCustomer
             {
                 AppUserId = userId,
                 OrderId = orderId
@@ -127,12 +123,15 @@ namespace Base.Model.Repository.OrderNameSpace
             if (order == null || !order.IsOpen || order.EmployerId == userId || order.WorkDate < DateTime.Now)
                 return false;
 
-            var candidate = order.Candidate.Where(x => x.AppUserId == userId).FirstOrDefault();
+            var candidate = order.Customer
+                .Where(x => x.AppUserId == userId)
+                .Where(x => x.IsAccepted == false)
+                .FirstOrDefault();
 
             if (candidate == null)
                 return false;
 
-            db.OrderCandidate.Remove(candidate);
+            db.OrderCustomer.Remove(candidate);
 
             db.SaveChanges();
             return true;
@@ -147,7 +146,6 @@ namespace Base.Model.Repository.OrderNameSpace
 
             db.Address.Remove(order.Address);
 
-            db.OrderCandidate.RemoveRange(order.Candidate);
             db.OrderCustomer.RemoveRange(order.Customer);
 
             db.OrderDetail.Remove(order.OrderDetail);
@@ -157,6 +155,6 @@ namespace Base.Model.Repository.OrderNameSpace
             return true;
         }
 
-        
+
     }
 }
