@@ -159,7 +159,7 @@
     <Compile Include="ViewModel\AppUserVM\LoginVM.cs" />
     <Compile Include="ViewModel\AppUserVM\RegistrationUserVM.cs" />
     <Compile Include="ViewModel\Location\AddressVM.cs" />
-    <Compile Include="ViewModel\Orders\CandidateVM.cs" />
+    <Compile Include="ViewModel\Orders\CustomerVM.cs" />
     <Compile Include="ViewModel\Orders\OrderDisplayVM.cs" />
     <Compile Include="ViewModel\Orders\OrderOwnerEnum.cs" />
     <Compile Include="ViewModel\Orders\OrderVM.cs" />

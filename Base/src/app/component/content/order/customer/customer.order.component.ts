@@ -12,15 +12,14 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class CustomerOrderComponent {
     @Input()
     public OrderId: Number;
-    public Candidates: ICustomer;
+    public Customers: ICustomer;
 
     constructor(private _service: CustomerService, public dialog: MatDialog) { }
     ngOnInit() {
-        
+
     }
 
     openDialog(Id: String): void {
-        debugger;
         let dialogRef = this.dialog.open(CustomerDialog, {
             data: Id
         });
@@ -28,10 +27,8 @@ export class CustomerOrderComponent {
 
     GetCustomers() {
         debugger;
-        this._service.GetCandidates(this.OrderId).subscribe(x => { debugger; this.Candidates = x });
+        this._service.GetCandidates(this.OrderId).subscribe(x => { debugger; this.Customers = x });
     }
-
-
 }
 
 @Component({
