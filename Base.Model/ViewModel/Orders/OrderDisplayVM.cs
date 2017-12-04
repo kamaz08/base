@@ -27,6 +27,7 @@ namespace Base.Model.ViewModel.Orders
         public String[] Description { get; set; }
         public String ExecutionTime { get; set; }
         public String[] Requirements { get; set; }
+        public bool IsOpen { get; set; }
 
         public static implicit operator OrderDisplayVM(Order model) => new OrderDisplayVM
         {
@@ -43,7 +44,8 @@ namespace Base.Model.ViewModel.Orders
             EmployerName = model.Employer.UserName,
             EmployerId = model.Employer.Id,
             Description = model.OrderDetail?.Description.Split('\n'),
-            Requirements = model.OrderDetail?.Requirements.Split('\n')
+            Requirements = model.OrderDetail?.Requirements.Split('\n'),
+            IsOpen = model.IsOpen
         };
     }
 }

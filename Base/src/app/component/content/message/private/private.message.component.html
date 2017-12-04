@@ -1,0 +1,36 @@
+﻿<div class="message" (mouseenter)="mouseEvents(true)" (mouseleave)="mouseEvents(false)">
+    <md-spinner *ngIf="LoadUsers"></md-spinner>
+    <div class="person-panel">
+        <md-radio-group style="display:inline-flex; flex-direction:column;" [(ngModel)]="SelectedUser" (change)="MessagesChange(null)">
+            <md-radio-button *ngFor="let item of PrivateMessageUsers" [value]="item" style="padding:10px">
+                {{item.UserName}}
+            </md-radio-button>
+        </md-radio-group>
+    </div>
+
+    <div class="message-panel">
+        <div style="height:70%; overflow: auto" #messdiv (scroll)="scrollEvent()">
+            <md-spinner *ngIf="LoadMessages"></md-spinner>
+            <md-card *ngFor="let item of MessageTab" style="margin:20px; padding:8px;">
+                <md-card-header>
+                    <md-card-title>{{item.UserName}}</md-card-title>
+                    <md-card-subtitle>{{item.Date}}</md-card-subtitle>
+                </md-card-header>
+                <md-card-content>
+                    <p *ngFor="let line of item.Message">
+                        {{line}}
+                    </p>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div style="height:30%;">
+            <form (ngSubmit)="onSubmit(Message._value)" [formGroup]="Message" style="width:100%">
+                <md-form-field style="width:100%">
+                    <textarea rows="5" mdInput formControlName="mess" placeholder="Wiadomość" style="width:100%"></textarea>
+                </md-form-field>
+                <br />
+                <button type="submit" md-raised-button color="primary">Wyślij</button>
+            </form>
+        </div>
+    </div>
+</div>

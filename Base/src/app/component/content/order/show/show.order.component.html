@@ -22,13 +22,13 @@
                 <p *ngFor="let item of Order.Description">{{item}}</p>
             </md-tab>
             <md-tab *ngIf="OrderOwner && OrderOwner != 1" label="Zleceniodawca"><showprofile [UserId]="Order.EmployerId"></showprofile></md-tab>
-            <md-tab *ngIf="OrderOwner && OrderOwner == 1" label="Kandydaci" #customertab><customerorder [OrderId]="Order.Id" #customer></customerorder></md-tab>
-            <md-tab *ngIf="OrderOwner && OrderOwner != 4" label="Wiadomości" #messagetab></md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner == 1" label="Kandydaci" #customertab><customerorder [Order]="Order" #customer></customerorder></md-tab>
+            <md-tab *ngIf="OrderOwner && OrderOwner != 4" label="Wiadomości" #messagetab><message [OrderId]="Order.Id" #messagec></message></md-tab>
         </md-tab-group>
     </md-card-content>
     <md-card-actions>
         <button *ngIf="OrderOwner && OrderOwner == 4" md-raised-button color="primary" (click)="SignIn()">Dołącz</button>
         <button *ngIf="OrderOwner && OrderOwner == 2" md-raised-button color="warn" (click)="SignOut()">Zrezygnuj</button>
-        <button *ngIf="OrderOwner && OrderOwner == 1" md-raised-button color="warn" (click)="DeleteOrder()">Usuń</button>
+        <button *ngIf="OrderOwner && OrderOwner == 1 && Order.IsOpen" md-raised-button color="warn" (click)="DeleteOrder()">Usuń</button>
     </md-card-actions>
 </md-card>

@@ -1,0 +1,19 @@
+﻿
+<md-card *ngIf="Vote" style="margin-bottom:20px">
+    <md-card-header>
+        <md-card-title><h1>Oceń użytkownika: {{Vote.UserName}}</h1></md-card-title>
+        <md-card-subtitle><h2>Za prace w: {{Vote.OrderName}}</h2></md-card-subtitle>
+        <md-card-subtitle><h2>{{Vote.WorkDate}}</h2></md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+        <h2>Ocena</h2>
+        <md-slider class="form-full-width" [max]="10" [min]="1" [step]="1" [thumb-label]="true"  [(ngModel)]="Value"></md-slider>
+        <h2>Opis</h2>
+        <md-form-field class="form-full-width">
+            <textarea mdInput [(ngModel)]="Description"></textarea>
+        </md-form-field>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button color="primary" (click)="AddVote(VValue, Description)">Dodaj</button>
+    </md-card-actions>
+</md-card>

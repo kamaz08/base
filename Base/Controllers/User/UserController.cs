@@ -25,40 +25,40 @@ namespace Base.Controllers.User
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> UpdatePersonalData(PersonalDataVM data)
+        public IHttpActionResult UpdatePersonalData(PersonalDataVM data)
         {
-            await _personalDataRepository.SavePersonalData(RequestContext.Principal.Identity.GetUserName(), data);
+            _personalDataRepository.SavePersonalData(RequestContext.Principal.Identity.GetUserName(), data);
             return Ok();
         }
 
         [HttpGet]
-        public async Task<PersonalDataVM> GetPersonalData()
+        public PersonalDataVM GetPersonalData()
         {
-            var user = await GetCurrentUser();
+            var user = GetCurrentUser();
             return _personalDataRepository.GetPersonalData(RequestContext.Principal.Identity.GetUserName());
         }
 
         [HttpGet]
-        public async Task<PersonalProfileVM> GetPersonalProfile()
+        public PersonalProfileVM GetPersonalProfile()
         {
-            var user = await GetCurrentUser();
+            var user = GetCurrentUser();
             return _personalDataRepository.GetPersonalProfile(user.Id);
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> UpdatePersonalProfile(PersonalProfileVM data)
+        public IHttpActionResult UpdatePersonalProfile(PersonalProfileVM data)
         {
-            var user = await GetCurrentUser();
-            await _personalDataRepository.SavePersonalProfile(user.Id, data);
+            var user = GetCurrentUser();
+            _personalDataRepository.SavePersonalProfile(user.Id, data);
 
             return Ok();
         }
 
         [HttpGet]
-        public async Task<PublicDataVM> GetPublicUser(String userId)
+        public PublicDataVM GetPublicUser(String userId)
         {
             if (userId == null || userId == String.Empty)
-                userId = (await GetCurrentUser()).Id;
+                userId = GetCurrentUser().Id;
             var res = _personalDataRepository.GetPublicDataVM(userId);
             return res;
         }

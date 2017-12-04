@@ -1,13 +1,21 @@
 ﻿<md-selection-list #customer>
     <div *ngFor="let item of Customers">
-        <md-toolbar>
-            <md-list-option checkboxPosition="before" selected="{{item.IsAccepted == true}}">{{item.Name}} {{item.Rate}} {{item.IsAccepted}}</md-list-option>
-            <span style="flex: 1 1 auto;"></span>
-            <button md-raised-button color="primary" (click)="openDialog(item.Id)">Zobacz profil</button>
+        <md-toolbar style="display:grid">
+            <div style="width: 100%; display:flex">
+                <md-list-option checkboxPosition="before" selected="{{item.isAccepted}}" disabled="{{Order.IsOpen == false}}" value="{{item.Id}}" style="width:100%">
+                    <div style="width: 100%; display:flex">
+                        <p>{{item.Name}}</p>
+                        <span style="flex: 1 1 auto;"></span>
+                        <p>Przepracował: {{item.Rate}}</p>
+                        <span style="flex: 1 1 auto;"></span>
+                        <p>Średnia ocena: {{item.Rate}}</p>
+                    </div>
+                </md-list-option>
+                <span style="flex: 1 1 auto;"></span>
+                <button md-raised-button color="primary" (click)="openDialog(item.Id)" style="padding-right:32px">Zobacz profil</button>
+            </div>
         </md-toolbar>
     </div>
 </md-selection-list>
 
-<p>
-    Options selected: {{customer.selectedOptions.selected.length}}
-</p>
+<button ngif="Order.IsOpen == true" md-raised-button color="primary" (click)="ChoosCandidates(customer.selectedOptions.selected)">Zakończ rekrutacje</button>

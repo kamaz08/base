@@ -25,8 +25,8 @@ namespace Base.Model.ViewModel.UserVM
             };
             if(user.PersonalProfile != null)
             {
-                result.Education = user.PersonalProfile.Education.Split('\n');
-                result.Description = user.PersonalProfile.Description.Split('\n');
+                result.Education = user.PersonalProfile.Education == null ? new String[0] : user.PersonalProfile.Education.Split('\n');
+                result.Description = user.PersonalProfile.Description == null ? new String[0] : user.PersonalProfile.Description.Split('\n');
                 if(user.PersonalData != null)
                 {
                     result.FirstName = user.PersonalProfile.ShowFirstName ? user.PersonalData.FirstName : String.Empty;

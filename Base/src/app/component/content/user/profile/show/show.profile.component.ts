@@ -11,4 +11,9 @@ export class ShowProfileComponent {
 
     ngOnInit() {
     }
+
+    public indexChanged($event: any) {
+
+    }
+
 }

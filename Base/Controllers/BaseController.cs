@@ -63,9 +63,14 @@ namespace Base.Controllers
             await AppUserManager.SendEmailAsync(userid, "Twoje jednorazowe hasło ", $"Twoje jednorazowe hasło to {code}");
         }
 
-        protected async Task<AppUser> GetCurrentUser()
+        protected async Task<AppUser> GetCurrentUserAsync()
         {
             return await AppUserManager.FindByNameAsync(RequestContext.Principal.Identity.GetUserName());
+        }
+
+        protected AppUser GetCurrentUser()
+        {
+            return AppUserManager.FindByName(RequestContext.Principal.Identity.GetUserName());
         }
     }
 }

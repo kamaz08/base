@@ -3,6 +3,7 @@ import { IOrderDisplay, OrderOwnerEnum } from './../../../../model/order.models'
 import { OrderService } from './../../../../service/order.service';
 
 import { CustomerOrderComponent } from './../customer/customer.order.component'
+import { ShowMessageComponent } from './../../message/show/show.message.component'
 
 @Component({
     selector: 'showorder',
@@ -16,9 +17,8 @@ export class ShowOrderComponent {
 
     @ViewChild('customertab') customertab: any;
     @ViewChild('messagetab') messagetab: any;
-    @ViewChild('customer')
-    private customerComponent: CustomerOrderComponent;
-
+    @ViewChild('customer') private customerComponent: CustomerOrderComponent;
+    @ViewChild('messagec') private messageComponent: ShowMessageComponent;
 
     constructor(private _service: OrderService) { }
     ngOnInit() {
@@ -29,8 +29,8 @@ export class ShowOrderComponent {
         if (this.customertab && this.customertab.isActive) {
             this.customerComponent.GetCustomers();
         }
-        if (this.customerComponent && this.messagetab.isActive) {
-
+        if (this.messagetab && this.messagetab.isActive) {
+            this.messageComponent.Load();
         }
     }
 

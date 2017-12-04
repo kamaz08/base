@@ -17,8 +17,9 @@ export class MenuComponent {
         {
             name: 'Praca', list: [
                 { name: 'Szukaj', icon: 'search', router: 'searchjob' },
-                { name: 'Twoje ofety', icon: 'content_copy', router: 'yourjobs' },
+                { name: 'Twoje ofety', icon: 'content_copy', router: 'youroffer' },
                 { name: 'Twoje aplikacje', icon: 'class', router: 'application' },
+                { name: 'Przyjęte zlecenia', icon:'assignment_turned_in', router: 'yourjob'},
                 { name: 'Dodaj ofertę', icon: 'note_add', router: 'add' },
                 { name: 'Oceń', icon: 'gavel', router: 'rate' }
             ]

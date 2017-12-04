@@ -2,6 +2,7 @@
 using Base.Model.Model.OrderModel;
 using Base.Model.Model.User;
 using Base.Model.Repository.Location;
+using Base.Model.Repository.Message;
 using Base.Model.ViewModel.Orders;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace Base.Model.Repository.OrderNameSpace
                 WorkDate = model.WorkDate,
                 EmployerId = user.Id,
                 CreatedDate = DateTime.Now
-            });
+            });            
 
             order.Address = new LocationRepository().AddOrUpdate(model, order.Address);
 
@@ -88,9 +89,11 @@ namespace Base.Model.Repository.OrderNameSpace
                 order.CategoryId = category.Id;
 
 
-            db.Order.Add(order);
+            var result = db.Order.Add(order);
 
             db.SaveChanges();
+
+            new MessageRepository().AddUserToPublicMessageGroup(null, user.Id, order.Id);
         }
 
         public bool SingInOrder(String userId, int orderId)
@@ -113,6 +116,12 @@ namespace Base.Model.Repository.OrderNameSpace
             });
 
             db.SaveChanges();
+
+            var messRepo = new MessageRepository();
+
+            messRepo.AddUserToPublicMessageGroup(order.PublicMessage.Where(x => x.IsGroup == true).First(), userId, order.Id);
+            messRepo.AddNewOrderMessage(order, userId);
+
             return true;
         }
 
@@ -145,16 +154,18 @@ namespace Base.Model.Repository.OrderNameSpace
                 return false;
 
             db.Address.Remove(order.Address);
-
             db.OrderCustomer.RemoveRange(order.Customer);
 
             db.OrderDetail.Remove(order.OrderDetail);
 
+            db.Message.RemoveRange(order.PublicMessage.SelectMany(x => x.Message));
+            db.AppUserPublicMessage.RemoveRange(order.PublicMessage.SelectMany(x => x.AppUserPublicMessage));
+            db.PublicMessage.RemoveRange(order.PublicMessage);
+            
+            db.Order.Remove(order);
             db.SaveChanges();
 
             return true;
         }
-
-
     }
 }

@@ -30,7 +30,7 @@ export class AddOrderComponent {
     }
 
     public onSubmit(data: IOrder) {
-        this._service.AddOrder(data).subscribe(x => { debugger; }, x => { debugger; }, () => { debugger; });
+        this._service.AddOrder(data).subscribe(x => {  });
     }
 
 

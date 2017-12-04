@@ -13,6 +13,7 @@ namespace Base.Model.Model.User
     public class AppUser : IdentityUser
     {
         public override string Email { get => base.Email; set => base.Email = value; }
+        public String PublicKey { get; set; }
         public DateTime DateCreated { get; set; }
 
         public virtual PersonalData PersonalData { get; set; }
@@ -25,5 +26,7 @@ namespace Base.Model.Model.User
         public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
         public virtual ICollection<PrivateMessage> SendPrivateMessage { get; set; }
         public virtual ICollection<AppUserPublicMessage> AppUserPublicMessage { get; set; }
+        public virtual ICollection<Preference> Preference { get; set; }
+        public virtual ICollection<CityPreference> CityPreference { get; set; }
     }
 }

@@ -1,4 +1,4 @@
 ﻿<md-tab-group (selectedIndexChange)="indexChanged($event)">
     <md-tab label="Opis użytkownika"><infoshowprofile [UserId]="UserId"></infoshowprofile></md-tab>
-    <md-tab label="Opinie">Opinion :D</md-tab>
+    <md-tab label="Opinie"><showvote [UserId]="UserId"></showvote></md-tab>
 </md-tab-group>

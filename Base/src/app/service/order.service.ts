@@ -37,16 +37,37 @@ export class OrderService {
         );
     }
 
-    public GetOrder(): Observable<any> {
+    public GetOrderOwner(id: Number): Observable<any> {
         return this._http.get(
-            '/api/Order/GetOrder',
+            '/api/Order/GetOrderOwner?id=' + id,
             { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
         );
     }
 
-    public GetOrderOwner(id: Number): Observable<any> {
+    public GetOrder(orderId: Number, preference: boolean): Observable<any> {
         return this._http.get(
-            '/api/Order/GetOrderOwner?id=' + id,
+            '/api/OrderList/GetOrders?orderId=' + orderId + '&preference=' + preference,
+            { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
+        );
+    }
+
+    public GetUserOrders(orderId: Number): Observable<any> {
+        return this._http.get(
+            '/api/OrderList/GetUserOrders?orderId=' + orderId,
+            { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
+        );
+    }
+
+    public GetCustomerOrders(orderId: Number): Observable<any> {
+        return this._http.get(
+            '/api/OrderList/GetCustomerOrders?orderId=' + orderId,
+            { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
+        );
+    }
+
+    public GetCandidateOrders(orderId: Number): Observable<any> {
+        return this._http.get(
+            '/api/OrderList/GetCandidateOrders?orderId=' + orderId,
             { headers: new HttpHeaders().set('Content-Type', 'application/json').append('Authorization', 'Bearer ' + this._auth._accessToken) }
         );
     }

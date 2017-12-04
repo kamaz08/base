@@ -1,0 +1,28 @@
+﻿<div>
+    <h1>Załaduj klucz prywatny z pliku</h1>
+    <md-form-field>
+        <input mdInput type="password" placeholder="hasło do klucza" [(ngModel)]="pass">
+    </md-form-field>
+    <br />
+    <input type="file" (change)='ReadKey($event)'>
+    <br />
+    <br />
+    <button md-raised-button color="primary" [disabled]="pass==null || pass.length < 8" (click)="LoadKey()">Załaduj klucz</button>
+    <p *ngIf="info">{{info}}</p>
+</div>
+<div>
+    <h1>Generuj nowy klucz prywatny</h1>
+    <p>Wszystkie prywatne wiadomości wysłane do teraz zostaną usunięte</p>
+    <br />
+    <md-form-field>
+        <input mdInput type="password" placeholder="hasło do klucza" [(ngModel)]="pass">
+    </md-form-field>
+    <br />
+    <button md-raised-button color="primary" (click)="GenerateKey()" [disabled]="pass==null || pass.length < 8">Generuj nowy klucz</button>
+    <br />
+    <br />
+    <div style="height:200px; width:auto; border-color: #ffe57f;border-style: solid; padding:20px;" color="accent" [hidden]="!IsGenerate" (mousemove)="MouseMove($event)" #GenerateDiv>
+        <md-progress-bar color="primary" [value]="RandomTab.length * 100 / 1024"></md-progress-bar>
+        <h1>Ruszaj myszką w tym polu aby wygenerować klucz</h1>
+    </div>
+</div>

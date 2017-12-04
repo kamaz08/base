@@ -1,1 +1,15 @@
-﻿<showorder *ngFor="let order of OrderList" [Order]="order"></showorder>
+﻿<div style="margin:20px">
+    <md-checkbox [(ngModel)]="Preference" (change)="ChangeOrder()">Tylko z preferencji</md-checkbox>
+</div>
+<showorder *ngFor="let order of OrderList" [Order]="order"></showorder>
+<md-spinner *ngIf="Load"></md-spinner>
+<md-card *ngIf="LastResult && LastResult.length == 0" style="margin-bottom: 20px">
+    <md-card-header>
+        <md-card-title>Zobaczyłeś już wszystko</md-card-title>
+    </md-card-header>
+</md-card>
+<md-card *ngIf="Load==false" style="margin-bottom:20px" (mouseenter)="scrollEvent()">
+    <md-card-header>
+        <md-card-title>Więcej</md-card-title>
+    </md-card-header>
+</md-card>

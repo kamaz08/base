@@ -9,6 +9,7 @@ namespace Base.Model.Model.Enum
     {
         Employer = 0,
         Customer = 1,
-        Raw = 2
+        EmployerRaw = 2,
+        CustomerRaw = 3
     }
 }

@@ -33,8 +33,7 @@ namespace Base.Model.Repository.Location
 
             if (model == null)
                 model = db.Address.Add(new Address());
-
-
+ 
             if(city.Id == 0)
                 model.City = city;
             else
@@ -56,6 +55,7 @@ namespace Base.Model.Repository.Location
 
         private String GetFirstCharakterUpper(String text)
         {
+            if (text == null) return String.Empty;
             text = text.ToLower();
             String[] tab = text.Split(' ');
             return String.Join(" ", tab.Where(x => x.Length > 0).Select(x => Char.ToUpper(x[0]) + x.Substring(1)));

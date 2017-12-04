@@ -31,6 +31,7 @@ export interface IOrderDisplay {
     Description: String[],
     ExecutionTime: String,
     Requirements: String[]
+    IsOpen: boolean;
 }
 
 export enum OrderOwnerEnum {

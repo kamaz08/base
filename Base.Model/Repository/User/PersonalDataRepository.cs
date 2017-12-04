@@ -20,7 +20,7 @@ namespace Base.Model.Repository.User
             this.db = new PracaDorywczaDbContext();
         }
 
-        public async Task SavePersonalData(string userName, PersonalDataVM data)
+        public void SavePersonalData(string userName, PersonalDataVM data)
         {
             var user = db.AppUser.Where(x => x.UserName == userName).First();
 
@@ -40,7 +40,7 @@ namespace Base.Model.Repository.User
 
             user.PersonalData.Address = new LocationRepository().AddOrUpdate(data, user.PersonalData.Address);
 
-            var res = await db.SaveChangesAsync();
+            var res = db.SaveChanges();
         }
 
         public PersonalDataVM GetPersonalData(string userName)
@@ -55,7 +55,7 @@ namespace Base.Model.Repository.User
             return user.PersonalProfile ?? new PersonalProfileVM();
         }
 
-        public async Task SavePersonalProfile(string userId, PersonalProfileVM data)
+        public void SavePersonalProfile(string userId, PersonalProfileVM data)
         {
             var user = db.AppUser.Where(x => x.Id == userId).First();
 
@@ -73,7 +73,7 @@ namespace Base.Model.Repository.User
             user.PersonalProfile.Education = data.Education;
             user.PersonalProfile.Description = data.Description;
 
-            var res = await db.SaveChangesAsync();
+            var res = db.SaveChanges();
         }
 
         public PublicDataVM GetPublicDataVM(String userId)

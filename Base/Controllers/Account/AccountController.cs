@@ -49,7 +49,7 @@ namespace Base.Controllers.Account
             AppUser user = _UserRepo.CreateUser(model);
 
             var result = await AppUserManager.CreateAsync(user, model.Password);
-
+            
             if (!result.Succeeded)
                 return BadRequest("Uzytkownik jest zajęty");
 
@@ -125,7 +125,7 @@ namespace Base.Controllers.Account
             if (model == null || !ModelState.IsValid)
                 return GetErrorResultModel();
 
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
             _UserRepo.ChangeEmail(user.Id, model.Email);
 
             return Ok();
@@ -137,7 +137,7 @@ namespace Base.Controllers.Account
             if (model == null || !ModelState.IsValid)
                 return GetErrorResultModel();
 
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
 
             var result = await AppUserManager.ChangePasswordAsync(user.Id, model.OldPassword, model.Password);
 

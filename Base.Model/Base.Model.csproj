@@ -105,6 +105,8 @@
     <Compile Include="Configuration\OrderConfiguration\OrderTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\AppUserOrderCustomerTypeConfiguration.cs" />
     <Compile Include="Configuration\OrderConfiguration\VoteTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\CityPreferenceTypeConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration\PreferenceTypeConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration\AppUserTypeConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration\PersonalDataTypeConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration\PersonalProfileTypeConfiguration.cs" />
@@ -129,6 +131,34 @@
     <Compile Include="Migrations\201710301705546_removeCandidate.Designer.cs">
       <DependentUpon>201710301705546_removeCandidate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711041652483_publicMessage.cs" />
+    <Compile Include="Migrations\201711041652483_publicMessage.Designer.cs">
+      <DependentUpon>201711041652483_publicMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711181305547_PublicKey.cs" />
+    <Compile Include="Migrations\201711181305547_PublicKey.Designer.cs">
+      <DependentUpon>201711181305547_PublicKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241118096_voteWorkDateTime.cs" />
+    <Compile Include="Migrations\201711241118096_voteWorkDateTime.Designer.cs">
+      <DependentUpon>201711241118096_voteWorkDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241124577_voteAllowNull.cs" />
+    <Compile Include="Migrations\201711241124577_voteAllowNull.Designer.cs">
+      <DependentUpon>201711241124577_voteAllowNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711241623470_preferences.cs" />
+    <Compile Include="Migrations\201711241623470_preferences.Designer.cs">
+      <DependentUpon>201711241623470_preferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251023266_VoteNotNullable.cs" />
+    <Compile Include="Migrations\201711251023266_VoteNotNullable.Designer.cs">
+      <DependentUpon>201711251023266_VoteNotNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251340218_CityPreferenceMigration.cs" />
+    <Compile Include="Migrations\201711251340218_CityPreferenceMigration.Designer.cs">
+      <DependentUpon>201711251340218_CityPreferenceMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Enum\VoteTypeEnum.cs" />
     <Compile Include="Model\LocationModel\City.cs" />
@@ -143,6 +173,7 @@
     <Compile Include="Model\UserModel\AppUser.cs" />
     <Compile Include="Model\OrderModel\Order.cs" />
     <Compile Include="Model\OrderModel\OrderDetail.cs" />
+    <Compile Include="Model\UserModel\CityPreference.cs" />
     <Compile Include="Model\UserModel\RefreshToken.cs" />
     <Compile Include="Model\LocationModel\Address.cs" />
     <Compile Include="Model\UserModel\PersonalData.cs" />
@@ -150,19 +181,29 @@
     <Compile Include="PracaDorywczaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Location\LocationRepository.cs" />
+    <Compile Include="Repository\Message\MessageRepository.cs" />
     <Compile Include="Repository\Order\CustomerRepository.cs" />
+    <Compile Include="Repository\Order\OrderListRepository.cs" />
     <Compile Include="Repository\Order\OrderRepository.cs" />
+    <Compile Include="Repository\Preference\PreferenceRepository.cs" />
     <Compile Include="Repository\User\PersonalDataRepository.cs" />
+    <Compile Include="Model\UserModel\Preference.cs" />
     <Compile Include="Repository\User\UserRepository.cs" />
     <Compile Include="ViewModel\AppUserVM\ChangeEmailVM.cs" />
     <Compile Include="ViewModel\AppUserVM\ChangePasswordVM.cs" />
     <Compile Include="ViewModel\AppUserVM\LoginVM.cs" />
     <Compile Include="ViewModel\AppUserVM\RegistrationUserVM.cs" />
     <Compile Include="ViewModel\Location\AddressVM.cs" />
+    <Compile Include="ViewModel\Message\MessageVM.cs" />
+    <Compile Include="ViewModel\Message\PrivateMessageUserVM.cs" />
+    <Compile Include="ViewModel\Message\PublicMessageVM.cs" />
+    <Compile Include="ViewModel\Orders\AddVoteVM.cs" />
     <Compile Include="ViewModel\Orders\CustomerVM.cs" />
     <Compile Include="ViewModel\Orders\OrderDisplayVM.cs" />
     <Compile Include="ViewModel\Orders\OrderOwnerEnum.cs" />
     <Compile Include="ViewModel\Orders\OrderVM.cs" />
+    <Compile Include="ViewModel\Orders\VoteVM.cs" />
+    <Compile Include="ViewModel\PreferenceVM\PreferenceVM.cs" />
     <Compile Include="ViewModel\UserVM\PersonalDataVM.cs" />
     <Compile Include="ViewModel\UserVM\PersonalProfileVM.cs" />
     <Compile Include="ViewModel\UserVM\PublicDataVM.cs" />
@@ -182,6 +223,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710301705546_removeCandidate.resx">
       <DependentUpon>201710301705546_removeCandidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041652483_publicMessage.resx">
+      <DependentUpon>201711041652483_publicMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711181305547_PublicKey.resx">
+      <DependentUpon>201711181305547_PublicKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241118096_voteWorkDateTime.resx">
+      <DependentUpon>201711241118096_voteWorkDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241124577_voteAllowNull.resx">
+      <DependentUpon>201711241124577_voteAllowNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711241623470_preferences.resx">
+      <DependentUpon>201711241623470_preferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251023266_VoteNotNullable.resx">
+      <DependentUpon>201711251023266_VoteNotNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251340218_CityPreferenceMigration.resx">
+      <DependentUpon>201711251340218_CityPreferenceMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -22,7 +22,7 @@ namespace Base.Controllers.Order
         [HttpPost]
         public async Task<IHttpActionResult> AddOrder(OrderVM data)
         {
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
 
             orderRepository.AddOrder(user, data);
 
@@ -32,7 +32,7 @@ namespace Base.Controllers.Order
         [HttpGet]
         public async Task<IHttpActionResult> SignInOrder(int id)
         {
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
 
             if (orderRepository.SingInOrder(user.Id, id))
                 return Ok();
@@ -42,7 +42,7 @@ namespace Base.Controllers.Order
         [HttpGet]
         public async Task<IHttpActionResult> SignOutOrder(int id)
         {
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
 
             if (orderRepository.SingOutOrder(user.Id, id))
                 return Ok();
@@ -52,7 +52,7 @@ namespace Base.Controllers.Order
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteOrder(int id)
         {
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
 
             if (orderRepository.DeleteOrder(user.Id, id))
                 return Ok();
@@ -60,18 +60,12 @@ namespace Base.Controllers.Order
         }
 
         [HttpGet]
-        public List<OrderDisplayVM> GetOrder()
-        {
-            return orderRepository.GetOrderList();
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
         public async Task<OrderOwnerEnum> GetOrderOwner(int id)
         {
-            var user = await GetCurrentUser();
+            var user = await GetCurrentUserAsync();
             return orderRepository.GetOrderOwner(user.Id, id);
         }
+
 
     }
 }

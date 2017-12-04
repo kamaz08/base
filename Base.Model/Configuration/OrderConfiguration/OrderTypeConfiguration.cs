@@ -49,6 +49,10 @@ namespace Base.Model.Configuration
             HasRequired(x => x.Category)
                 .WithMany()
                 .HasForeignKey(x => x.CategoryId);
+
+            HasMany(x => x.PublicMessage)
+                .WithOptional(x => x.Order)
+                .HasForeignKey(x => x.OrderId);
         }
     }
 }

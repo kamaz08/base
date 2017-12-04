@@ -46,6 +46,14 @@ namespace Base.Model.Configuration
             HasMany(x => x.AppUserPublicMessage)
                 .WithRequired(x => x.AppUser)
                 .HasForeignKey(x => x.AppUserId);
+
+            HasMany(x => x.Preference)
+                .WithRequired(x => x.AppUser)
+                .HasForeignKey(x => x.AppUserId);
+
+            HasMany(x => x.CityPreference)
+                .WithRequired(x => x.AppUser)
+                .HasForeignKey(x => x.AppUserId);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Base.Model.ViewModel.Orders
         {
             Id = model.Id,
             Name = model.UserName,
-            Rate = Decimal.Round(model.Vote.Count > 0 ? (decimal)model.Vote.Average(x => x.Note) : 0m, 1),
+            Rate = Decimal.Round(model.Vote.Where(x=> ((int)x.Type) < 2).ToList().Count > 0 ? (decimal)model.Vote.Average(x => x.Note) : 0m, 1),
             isAccepted = false
         };
     }

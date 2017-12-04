@@ -10,9 +10,9 @@
             <user-panel></user-panel>
             <app-menu></app-menu>
         </md-sidenav>
-        <main class="app-main">
+        <main class="app-main" #main>
             <md-card>
-                <router-outlet></router-outlet>
+                <router-outlet #router></router-outlet>
             </md-card>
         </main>
     </md-sidenav-container>

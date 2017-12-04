@@ -34,6 +34,7 @@ namespace Base.Model.Model.OrderModel
 
         public virtual ICollection<AppUserOrderCustomer> Customer { get; set; }
         public virtual ICollection<PrivateMessage> PrivateMessage { get; set; }
+        public virtual ICollection<PublicMessage> PublicMessage { get; set; }
 
     }
 }

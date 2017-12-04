@@ -15,7 +15,8 @@ namespace Base.Model.Model.OrderModel
         public String RaterId { get; set; }
         public String OrderName { get; set; }
         public DateTime VoteDate { get; set; }
-        public int Note { get; set; }
+        public DateTime WorkDate { get; set; }
+        public int? Note { get; set; }
         public String Description { get; set; }
 
         public virtual AppUser AppUser { get; set; }

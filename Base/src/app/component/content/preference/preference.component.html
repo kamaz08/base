@@ -1,0 +1,21 @@
+﻿
+<md-card style="margin-bottom:20px; max-height: 400px; overflow-y: auto">
+    <md-card-title>Wybierz interesujące kategorie</md-card-title>
+    <md-spinner *ngIf="LoadingCategory == true"></md-spinner>
+    <md-selection-list #category>
+        <md-list-option *ngFor="let item of Category" selected="{{item.Selected}}" value="{{item.Id}}">
+            {{item.Name}}
+        </md-list-option>
+    </md-selection-list>
+</md-card>
+
+<md-card style="margin-bottom:20px; max-height: 400px; overflow-y: auto">
+    <md-card-title>Wybierz interesujące miasta</md-card-title>
+    <md-spinner *ngIf="LoadingCity == true"></md-spinner>
+    <md-selection-list #city>
+        <md-list-option *ngFor="let item of City" selected="{{item.Selected}}" value="{{item.Id}}">
+            {{item.Name}}
+        </md-list-option>
+    </md-selection-list>
+</md-card>
+<button *ngIf="LoadingCity==false && LoadingCategory == false" md-raised-button color="primary" (click)="Save(category.options.toArray(),city.options.toArray())">Zapisz</button>

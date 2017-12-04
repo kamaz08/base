@@ -10,6 +10,7 @@ namespace Base.Model.Model.MessageModel
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public bool IsGroup { get; set; }
         public int? OrderId { get; set; }
 
         public virtual Order Order { get; set; }

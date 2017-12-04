@@ -19,7 +19,6 @@ namespace Base.Model.Model
         {
         }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -54,6 +53,10 @@ namespace Base.Model.Model
         public DbSet<AppUserPublicMessage> AppUserPublicMessage { get; set; }
         public DbSet<PublicMessage> PublicMessage { get; set; }
         public DbSet<OrderCategory> OrderCategory { get; set; }
+        public DbSet<Preference> Preference { get; set; }
+        public DbSet<CityPreference> CityPreference { get; set; }
+
+
 
         private void AddUserConfiguration(DbModelBuilder modelBuilder)
         {
@@ -61,6 +64,8 @@ namespace Base.Model.Model
             modelBuilder.Configurations.Add(new PersonalDataTypeConfiguration());
             modelBuilder.Configurations.Add(new PersonalProfileTypeConfiguration());
             modelBuilder.Configurations.Add(new RefreshtokenTypeConfiguration());
+            modelBuilder.Configurations.Add(new PreferenceTypeConfiguration());
+            modelBuilder.Configurations.Add(new CityPreferenceTypeConfiguration());
         }
 
         private void AddAddressConfiguration( DbModelBuilder modelBuilder)

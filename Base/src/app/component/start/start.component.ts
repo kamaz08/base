@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { AuthorizeService } from './../../service/authorize.service'
 
@@ -10,7 +10,8 @@ import { AuthorizeService } from './../../service/authorize.service'
 export class StartComponent {
     showButton: boolean;
     showMenu: boolean;
-
+    @ViewChild('main') main: any; 
+    @ViewChild('router') router: any; 
     constructor(private _authorizeService: AuthorizeService) {
         this._authorizeService.CheckLogin();
     }

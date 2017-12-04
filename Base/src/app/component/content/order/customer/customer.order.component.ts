@@ -1,5 +1,6 @@
 ﻿import { Component, Input, Inject } from '@angular/core';
 import { ICustomer } from './../../../../model/customer.models';
+import { IOrderDisplay } from './../../../../model/order.models';
 import { CustomerService } from './../../../../service/customer.service';
 import { ShowOrderComponent } from './../show/show.order.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -11,7 +12,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class CustomerOrderComponent {
     @Input()
-    public OrderId: Number;
+    public Order: IOrderDisplay;
     public Customers: ICustomer;
 
     constructor(private _service: CustomerService, public dialog: MatDialog) { }
@@ -26,14 +27,19 @@ export class CustomerOrderComponent {
     }
 
     GetCustomers() {
-        debugger;
-        this._service.GetCandidates(this.OrderId).subscribe(x => { debugger; this.Customers = x });
+        this._service.GetCandidates(this.Order.Id).subscribe(x => { debugger; this.Customers = x });
+    }
+
+    public ChoosCandidates(candidates: any[]) {
+        var result: string[] = [];
+        candidates.forEach(function (x) { result.push(x.value); })
+        this._service.ChooseCandidates(this.Order.Id, result).subscribe(x => this.GetCustomers())
     }
 }
 
 @Component({
     selector: 'CustomerDialog',
-    template: '<showprofile UserId={{Id}}></showprofile>',
+    template: '<div style="min-width:500px; max-height:600px"><showprofile UserId={{Id}}></showprofile></div>',
 })
 export class CustomerDialog {
 

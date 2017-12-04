@@ -41,9 +41,9 @@ export class LoginComponent {
             password: this.zPassword,
             otpkey: this.zOtp
         };
-
+        var me = this;
         this._loginService.Login(data).subscribe(
-            (x: any) => { this._authorizeService.SetAccess(x.access_token, x.refresh_token); },
+            (x: any) => { me.zPassword = ''; debugger; this._authorizeService.SetAccess(x.access_token, x.refresh_token);  },
             (err) => { this._errorService.SetError(err); });
     };
 
@@ -55,6 +55,6 @@ export class LoginComponent {
             Email: this.rEmail
         };
         this._loginService.Register(data).subscribe(
-            (x) => { this._authorizeService.CheckLogin() }, (err) => { this._errorService.SetError(err); });
+            (x) => { this._authorizeService.CheckLogin(); }, (err) => { this._errorService.SetError(err); });
     }
 }

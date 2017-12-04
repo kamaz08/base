@@ -1,0 +1,8 @@
+﻿<md-tab-group #tabGroup (selectedIndexChange)="tabChanged($event)">
+    <md-tab label="Publiczne" #publictab>
+        <publicmessage [OrderId]="OrderId" #public></publicmessage>
+    </md-tab>
+    <md-tab label="Prywatne" #privatetab>
+        <privatemessage [OrderId]="OrderId" #private></privatemessage>
+    </md-tab>
+</md-tab-group>
